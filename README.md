@@ -1,2 +1,0 @@
-# Jess
-Java Chess Engine
