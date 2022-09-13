@@ -11,7 +11,7 @@ public abstract class Tile {
     protected final int tileCoordinate;
 
     // Cache all possible empty tiles
-    // Note: we could also cache all possible occupied tiles. Not necessary at the moment. 
+    // Note: we could also cache all possible occupied tiles. Not necessary at the moment.
     private static final Map<Integer, EmptyTile> EMPTY_TILE_MAP = createAllPossibleEmptyTiles();
 
 
@@ -38,7 +38,7 @@ public abstract class Tile {
     public abstract Piece getPiece();
 
     public static final class EmptyTile extends Tile {
-        EmptyTile(final int coordinate) {
+        private EmptyTile(final int coordinate) {
             super(coordinate);
         }
 
@@ -57,7 +57,7 @@ public abstract class Tile {
 
         private final Piece pieceOnTile;
 
-        OccupiedTile(int tileCoordinate, Piece pieceOnTile) {
+        private OccupiedTile(int tileCoordinate, Piece pieceOnTile) {
             super(tileCoordinate);
             this.pieceOnTile = pieceOnTile;
         }
