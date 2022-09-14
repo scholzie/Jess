@@ -31,35 +31,54 @@ public class Bishop extends Piece {
         /* Loop through each vector coordinate
          * Continue applying vector offset to current position until the tile is no longer valid
          * Skip to next Coordinate and repeat
+         *
+         * Edge cases:
+         * - Bishops on the A file cannot use offsets -9 or +7
+         * - Bishops on the H file cannot use offsets -7 or +9
          */
 
+
         for(final int currentCandidateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
-            int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
+
+            int candidateDestinationCoordinate = this.piecePosition;
 
             while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
-
-                final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-                // Scenario 1: A piece was found.
-                // Scenario 2: No piece was found
-                //      Add a legal MajorMove
-                //      Keep looping
-                if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-                    final Piece pieceAtDestination = candidateDestinationTile.getPiece();
-                    final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
-                    // It's the opposite color
-                    if (pieceAlliance != this.pieceAlliance) {
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
-                    }
+                if(isFirstColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset) ||
+                        isEighthColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset)) {
                     break;
-                } else {
-                    legalMoves.add(new Move.MajorMove(board, this,
-                            candidateDestinationCoordinate));
                 }
-
                 candidateDestinationCoordinate += currentCandidateOffset;
+                if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+                    final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
+                    // Scenario 1: A piece was found.
+                    // Scenario 2: No piece was found
+                    //      Add a legal MajorMove
+                    //      Keep looping
+
+                    // TODO: pull this logic into a helper lib
+                    if (candidateDestinationTile.isTileOccupied()) {
+                        final Piece pieceAtDestination = candidateDestinationTile.getPiece();
+                        final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
+                        // It's the opposite color
+                        if (pieceAlliance != this.pieceAlliance) {
+                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                        }
+                        break;
+                    } else {
+                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    }
+                }
             }
         }
 
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.INSTANCE.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -9 || candidateOffset == 7);
+    }
+
+    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.INSTANCE.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == -7 || candidateOffset == 9);
     }
 }
