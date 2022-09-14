@@ -12,7 +12,7 @@ public abstract class Tile {
 
     // Cache all possible empty tiles
     // Note: we could also cache all possible occupied tiles. Not necessary at the moment.
-    private static final Map<Integer, EmptyTile> EMPTY_TILE_MAP = createAllPossibleEmptyTiles();
+    private static final Map<Integer, EmptyTile> EMPTY_TILE_CACHE = createAllPossibleEmptyTiles();
 
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
@@ -31,7 +31,7 @@ public abstract class Tile {
     }
 
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
-        return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILE_MAP.get(tileCoordinate);
+        return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILE_CACHE.get(tileCoordinate);
     }
 
     public abstract boolean isTileOccupied();
