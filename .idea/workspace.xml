@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/BoardUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/Bishop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/Knight.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
