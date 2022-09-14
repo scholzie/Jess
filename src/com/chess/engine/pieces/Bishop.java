@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Bishop extends Piece {
+import static com.chess.engine.board.BoardUtils.isValidTileCoordinate;
+import static com.chess.engine.board.Move.AttackMove;
+import static com.chess.engine.board.Move.MajorMove;
 
-    // +/- 7 and 9
-//    private final static int[] CANDIDATE_MOVE_COORDINATES = { -9, -18, -27, -28, -35, -36, -42, -45, -49, -54, -63,
-//            7, 9, 14, 18, 21, 27, 28, 35, 36, 42, 45, 49, 54, 63};
+public class Bishop extends Piece {
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9 };
 
@@ -28,44 +28,34 @@ public class Bishop extends Piece {
 
         final List<Move> legalMoves = new ArrayList<>();
 
-        /* Loop through each vector coordinate
-         * Continue applying vector offset to current position until the tile is no longer valid
-         * Skip to next Coordinate and repeat
-         *
-         * Edge cases:
-         * - Bishops on the A file cannot use offsets -9 or +7
-         * - Bishops on the H file cannot use offsets -7 or +9
-         */
-
-
         for(final int currentCandidateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
 
             int candidateDestinationCoordinate = this.piecePosition;
 
-            while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+            while(isValidTileCoordinate(candidateDestinationCoordinate)) {
                 if(isFirstColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset) ||
                         isEighthColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset)) {
                     break;
                 }
                 candidateDestinationCoordinate += currentCandidateOffset;
-                if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+                if(isValidTileCoordinate(candidateDestinationCoordinate)) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     // Scenario 1: A piece was found.
                     // Scenario 2: No piece was found
                     //      Add a legal MajorMove
                     //      Keep looping
 
-                    // TODO: pull this logic into a helper lib
+                    // TODO pull this logic into a helper lib
                     if (candidateDestinationTile.isTileOccupied()) {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                         // It's the opposite color
                         if (pieceAlliance != this.pieceAlliance) {
-                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                            legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
                         break;
                     } else {
-                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                        legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
                     }
                 }
             }
