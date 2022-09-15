@@ -3,6 +3,7 @@ package com.chess.engine.board;
 import com.chess.engine.Alliance;
 import com.chess.engine.pieces.*;
 import com.chess.engine.player.BlackPlayer;
+import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 
@@ -66,6 +67,14 @@ public class Board {
             }
         }
         return ImmutableList.copyOf(activePieces);
+    }
+
+    public Player getBlackPlayer() {
+        return this.blackPlayer;
+    }
+
+    public Player getWhitePlayer() {
+        return this.whitePlayer;
     }
 
     public Tile getTile(final int tileCoordinate) {
