@@ -2,25 +2,56 @@ package com.chess.engine.board;
 
 import com.chess.engine.pieces.Piece;
 
+import static com.chess.engine.board.Board.*;
+
 public abstract class Move {
 
     final Board board;
-    final Piece piece;
+    final Piece movedPiece;
     final int destinationCoordinate;
 
-    Move(final Board board,
+    private Move(final Board board,
          final Piece movedPiece,
          final int destinationCoordinates) {
         this.board = board;
-        this.piece = movedPiece;
+        this.movedPiece = movedPiece;
         this.destinationCoordinate = destinationCoordinates;
     }
+
+    public int getDestinationCoordinate() {
+        return this.destinationCoordinate;
+    }
+
+    public abstract Board execute();
 
     public static final class MajorMove extends Move {
         public MajorMove(final Board board,
                           final Piece piece,
                           final int destinationCoordinates) {
             super(board, piece, destinationCoordinates);
+        }
+
+        // TODO impl
+        @Override
+        public Board execute() {
+            // Generate a new board to return
+            final Builder builder = new Builder();
+            for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
+                // Copy all pieces except the one we're moving
+                // TODO hashcode and equals for Piece
+                if(!this.movedPiece.equals(piece)) {
+                    builder.setPiece(piece);
+                }
+            }
+            for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()){
+                // Copy all opponent's pieces
+                builder.setPiece(piece);
+            }
+
+            builder.setPiece(this.movedPiece);
+            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+
+            return builder.build();
         }
     }
 
@@ -35,6 +66,12 @@ public abstract class Move {
             super(board, piece, destinationCoordinates);
             this.attackedPiece = attackedPiece;
         }
+
+        // TODO impl
+        @Override
+        public Board execute() {
+            return null;
+        }
     }
 
     public static final class CaptureMove extends Move {
@@ -46,6 +83,13 @@ public abstract class Move {
                             final Piece capturedPiece){
             super(board, piece, destinationCoordinates);
             this.capturedPiece = capturedPiece;
+        }
+
+        // TODO: implement
+        @Override
+        public Board execute() {
+            // create a new board, then change active board to that new board
+            return null;
         }
     }
 
@@ -59,6 +103,13 @@ public abstract class Move {
                              final Piece capturedPiece){
             super(board, piece, destinationCoordinates);
             this.capturedPiece = capturedPiece;
+        }
+
+        // TODO: implement
+        @Override
+        public Board execute() {
+            // Switch active player
+            return null;
         }
     }
 }
