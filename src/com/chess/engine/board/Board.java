@@ -14,15 +14,19 @@ public class Board {
     private final List<Tile> gameBoard;
     private final Collection<Piece> blackPieces;
     private final Collection<Piece> whitePieces;
+//    private final Collection<Piece> blackCapturedPieces;
+//    private final Collection<Piece> whiteCapturedPieces;
 
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
     private final Player currentPlayer;
 
-    private Board(Builder builder) {
+    private Board(BoardBuilder builder) {
         this.gameBoard = createGameBoard(builder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
+//        this.blackCapturedPieces = new ArrayList<Piece>();
+//        this.whiteCapturedPieces = new ArrayList<Piece>();
 
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
@@ -88,7 +92,7 @@ public class Board {
         return this.gameBoard.get(tileCoordinate);
     }
 
-    private static List<Tile> createGameBoard(final Builder builder) {
+    private static List<Tile> createGameBoard(final BoardBuilder builder) {
         final Tile[] tiles = new Tile[BoardUtils.NUM_BOARD_TILES];
         for(int i = 0; i < BoardUtils.NUM_BOARD_TILES; i++){
             tiles[i] = Tile.createTile(i, builder.boardConfig.get(i));
@@ -97,7 +101,7 @@ public class Board {
     }
 
     public static Board createStandardBoard() {
-        final Builder builder = new Builder();
+        final BoardBuilder builder = new BoardBuilder();
 
         // Set the black pieces
         builder.setPiece(new Rook(0, Alliance.BLACK))
@@ -140,21 +144,21 @@ public class Board {
     }
 
 
-    public static class Builder {
+    public static class BoardBuilder {
 
         Map<Integer, Piece> boardConfig;
         Alliance nextMoveMaker;
 
-        public Builder() {
+        public BoardBuilder() {
             this.boardConfig = new HashMap<>();
         }
 
-        public Builder setPiece(final Piece piece) {
+        public BoardBuilder setPiece(final Piece piece) {
             this.boardConfig.put(piece.getPiecePosition(), piece);
             return this;
         }
 
-        public Builder setMoveMaker(final Alliance nextMoveMaker) {
+        public BoardBuilder setMoveMaker(final Alliance nextMoveMaker) {
             this.nextMoveMaker = nextMoveMaker;
             return this;
         }

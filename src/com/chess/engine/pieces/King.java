@@ -63,6 +63,11 @@ public class King extends Piece {
         return PieceType.KING.toString();
     }
 
+    @Override
+    public King movePiece(final Move move) {
+        return new King(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    }
+
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
         return BoardUtils.FIRST_COLUMN.get(currentPosition) &&
                 (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
