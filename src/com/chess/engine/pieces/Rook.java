@@ -16,7 +16,9 @@ import static com.chess.engine.board.BoardUtils.isValidTileCoordinate;
 public class Rook extends Piece {
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -1, 1, -8, 8 };
 
-    Rook(int piecePosition, Alliance pieceAlliance) { super(piecePosition, pieceAlliance); }
+    public Rook(final int piecePosition, final Alliance pieceAlliance) {
+        super(piecePosition, pieceAlliance);
+    }
 
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {

@@ -24,7 +24,7 @@ public class Pawn extends Piece {
 
     private boolean hasMoved;
 
-    Pawn(int piecePosition, Alliance pieceAlliance) {
+    public Pawn(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
 
         this.hasMoved = false;

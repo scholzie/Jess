@@ -19,7 +19,7 @@ public class King extends Piece {
         return this.isInCheck;
     }
 
-    King(final int piecePosition, final Alliance pieceAlliance) {
+    public King(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
