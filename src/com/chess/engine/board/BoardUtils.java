@@ -8,7 +8,7 @@ public enum BoardUtils {
     INSTANCE;
 
     public static final int NUM_BOARD_TILES = 64;
-    private static final int NUM_TILES_PER_ROW = 8;
+    public static final int NUM_TILES_PER_ROW = 8;
     private static final int START_TILE_INDEX = 0;
 
     // Tile addresses
@@ -23,8 +23,8 @@ public enum BoardUtils {
     public final static List<Boolean> SECOND_COLUMN = initColumn(1);
     public final static List<Boolean> SEVENTH_COLUMN = initColumn(6);
     public final static List<Boolean> EIGHTH_COLUMN = initColumn(7);
-    public final static List<Boolean> SECOND_ROW = initRow(1);
-    public final static List<Boolean> SEVENTH_ROW = initRow(1);
+    public final static List<Boolean> SECOND_ROW = initRow(8);
+    public final static List<Boolean> SEVENTH_ROW = initRow(48);
 
 
     private static List<Boolean> initColumn(int columnNumber) {
@@ -53,9 +53,9 @@ public enum BoardUtils {
         return List.of(row);
     }
 
-    private BoardUtils() {
-        throw new RuntimeException("BoardUtils is not an instantiable object Class!");
-    }
+//    private BoardUtils() {
+//        throw new RuntimeException("BoardUtils is not an instantiable object Class!");
+//    }
 
     public static boolean isValidTileCoordinate(final int tileCoordinate) {
         return tileCoordinate >= START_TILE_INDEX && tileCoordinate < NUM_BOARD_TILES;

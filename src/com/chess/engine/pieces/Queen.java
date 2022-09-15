@@ -61,13 +61,18 @@ public class Queen extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    @Override
+    public String toString() {
+        return PieceType.QUEEN.toString();
+    }
+
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.INSTANCE.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -9 ||
+        return BoardUtils.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -9 ||
                 candidateOffset == 7 || candidateOffset == -1);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.INSTANCE.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == -7 ||
+        return BoardUtils.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == -7 ||
                 candidateOffset == 9 || candidateOffset == 1);
     }
 }

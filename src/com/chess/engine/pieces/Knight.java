@@ -59,21 +59,26 @@ public class Knight extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    @Override
+    public String toString() {
+        return PieceType.KNIGHT.toString();
+    }
+
     // Column Exclusions
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
-        return BoardUtils.INSTANCE.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -17 || candidateOffset == -10 ||
+        return BoardUtils.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -17 || candidateOffset == -10 ||
                 candidateOffset == 6 || candidateOffset == 15);
     }
 
     private static boolean isSecondColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.INSTANCE.SECOND_COLUMN.get(currentPosition) && (candidateOffset == -10 || candidateOffset == 6);
+        return BoardUtils.SECOND_COLUMN.get(currentPosition) && (candidateOffset == -10 || candidateOffset == 6);
     }
     private static boolean isSeventhColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.INSTANCE.SEVENTH_COLUMN.get(currentPosition) && (candidateOffset == -6 || candidateOffset == 10);
+        return BoardUtils.SEVENTH_COLUMN.get(currentPosition) && (candidateOffset == -6 || candidateOffset == 10);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.INSTANCE.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == -15 || candidateOffset == -6 ||
+        return BoardUtils.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == -15 || candidateOffset == -6 ||
                         candidateOffset == 10 || candidateOffset == 17);
     }
 }
