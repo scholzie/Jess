@@ -36,4 +36,29 @@ public abstract class Move {
             this.attackedPiece = attackedPiece;
         }
     }
+
+    public static final class CaptureMove extends Move {
+        final Piece capturedPiece;
+
+        public CaptureMove(final Board board,
+                            final Piece piece,
+                            final int destinationCoordinates,
+                            final Piece capturedPiece){
+            super(board, piece, destinationCoordinates);
+            this.capturedPiece = capturedPiece;
+        }
+    }
+
+
+    public static final class EnPassentCaptureMove extends Move {
+        final Piece capturedPiece;
+
+        public EnPassentCaptureMove(final Board board,
+                             final Piece piece,
+                             final int destinationCoordinates,
+                             final Piece capturedPiece){
+            super(board, piece, destinationCoordinates);
+            this.capturedPiece = capturedPiece;
+        }
+    }
 }
