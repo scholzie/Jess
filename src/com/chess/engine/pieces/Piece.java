@@ -36,4 +36,8 @@ public abstract class Piece {
     public boolean isFirstMove() {
         return this.isFirstMove;
     }
+
+    public int getPiecePosition() {
+        return this.piecePosition;
+    }
 }
