@@ -20,7 +20,7 @@ public class King extends Piece {
     }
 
     public King(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.KING, piecePosition, pieceAlliance);
     }
 
     @Override

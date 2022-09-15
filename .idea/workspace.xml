@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/Jess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/player/BlackPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/player/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/player/WhitePlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/BoardUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/Bishop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/King.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/Knight.java" afterDir="false" />
@@ -60,6 +60,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.chess.engine.player" />
       <recent name="com.chess.engine.board" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
@@ -117,22 +118,8 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/chess/engine/board/Board.java</url>
-          <line>78</line>
+          <line>86</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/chess/engine/Jess.java</url>
-          <line>7</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/com/chess/engine/Jess.java</url>
-          <line>6</line>
-          <properties class="com.chess.engine.Jess" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
