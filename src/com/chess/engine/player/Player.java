@@ -27,7 +27,7 @@ public abstract class Player {
         this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
     }
 
-    private static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
+    protected static Collection<Move> calculateAttacksOnTile(final int piecePosition, final Collection<Move> moves) {
         final List<Move> attackMoves = new ArrayList<>();
         for(final Move move : moves){
             if(piecePosition == move.getDestinationCoordinate()) {
@@ -60,9 +60,9 @@ public abstract class Player {
     }
 
     private boolean hasEscapeMoves() {
-        for(final Move move : this.legalMoves){
+        for (final Move move : this.legalMoves) {
             final MoveTransition transition = makeMove(move); // Make the move on a temp board
-            if(transition.getMoveStatus().isDone()) {
+            if (transition.getMoveStatus().isDone()) {
                 return true;
             }
         }
@@ -106,4 +106,5 @@ public abstract class Player {
     public abstract Collection<Piece> getActivePieces();
     public abstract Alliance getAlliance();
     public abstract Player getOpponent();
+    protected abstract Collection<Move> calculateCastlingMoves(Collection<Move> playerLegals, Collection<Move> opponentsLegals);
 }

@@ -42,6 +42,12 @@ public class King extends Piece {
 
                 if(!candidateDestinationTile.isTileOccupied()) {
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    // Castling
+                    if(currentCandidateOffset == -2 || currentCandidateOffset == 2){
+                        // King cannot be in check
+                        // No tile in the king's path can be in check
+                        // Neither the king nor the rook may have been moved previously
+                    }
                 } else {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();

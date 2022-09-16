@@ -150,11 +150,15 @@ public class Board {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    public Alliance nextPlayer() {
+        return this.currentPlayer.getOpponent().getAlliance();
+    }
 
     public static class BoardBuilder {
 
         Map<Integer, Piece> boardConfig;
         Alliance nextMoveMaker;
+        Pawn enPassantPawn;
 
         public BoardBuilder() {
             this.boardConfig = new HashMap<>();
@@ -172,6 +176,10 @@ public class Board {
 
         public Board build() {
             return new Board(this);
+        }
+
+        public void setEnPassantPawn(final Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
         }
     }
 }
