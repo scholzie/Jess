@@ -26,7 +26,28 @@ public abstract class Move {
         return this.movedPiece;
     }
 
-    public abstract Board execute();
+    // TODO impl
+    public Board execute() {
+        // Generate a new board to return
+        final BoardBuilder builder = new BoardBuilder();
+        for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
+            // Copy all pieces except the one we're moving
+            // TODO hashcode and equals for Piece
+            if(!this.movedPiece.equals(piece)) {
+                builder.setPiece(piece);
+            }
+        }
+        for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()){
+            // Copy all opponent's pieces
+            builder.setPiece(piece);
+        }
+
+        //TODO Impl
+        builder.setPiece(this.movedPiece.movePiece((this)));
+        builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+
+        return builder.build();
+    }
 
     public static final class MajorMove extends Move {
         public MajorMove(final Board board,
@@ -34,33 +55,9 @@ public abstract class Move {
                           final int destinationCoordinates) {
             super(board, piece, destinationCoordinates);
         }
-
-        // TODO impl
-        @Override
-        public Board execute() {
-            // Generate a new board to return
-            final BoardBuilder builder = new BoardBuilder();
-            for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
-                // Copy all pieces except the one we're moving
-                // TODO hashcode and equals for Piece
-                if(!this.movedPiece.equals(piece)) {
-                    builder.setPiece(piece);
-                }
-            }
-            for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()){
-                // Copy all opponent's pieces
-                builder.setPiece(piece);
-            }
-
-            //TODO Impl
-            builder.setPiece(this.movedPiece.movePiece((this)));
-            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
-
-            return builder.build();
-        }
     }
 
-    public static final class AttackMove extends Move {
+    public static class AttackMove extends Move {
 
         final Piece attackedPiece;
 
@@ -71,62 +68,86 @@ public abstract class Move {
             super(board, piece, destinationCoordinates);
             this.attackedPiece = attackedPiece;
         }
+    }
 
-        // TODO impl
-        @Override
-        public Board execute() {
-            final BoardBuilder builder = new BoardBuilder();
-            // copy all pieces except moved piece
-            for(final Piece piece : this.board.currentPlayer().getActivePieces()){
-                if(!this.movedPiece.equals(piece)) builder.setPiece(piece);
-            }
-            for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
-                if(!this.attackedPiece.equals(piece)) builder.setPiece(piece);
-            }
-
-            //TODO finish
-
-            // copy all opponent's piece except attacked piece
-            return null;
+    public static class PawnMove extends Move {
+        public PawnMove(final Board board,
+                        final Piece piece,
+                        final int destinationCoordinates){
+            super(board, piece, destinationCoordinates);
         }
     }
 
-//    public static final class CaptureMove extends Move {
-//        final Piece capturedPiece;
-//
-//        public CaptureMove(final Board board,
-//                            final Piece piece,
-//                            final int destinationCoordinates,
-//                            final Piece capturedPiece){
-//            super(board, piece, destinationCoordinates);
-//            this.capturedPiece = capturedPiece;
-//        }
-//
-//        // TODO: implement
-//        @Override
-//        public Board execute() {
-//            // create a new board, then change active board to that new board
-//            return null;
-//        }
-//    }
+    public static final class PawnJump extends PawnMove {
+        public PawnJump(final Board board,
+                        final Piece piece,
+                        final int destinationCoordinates){
+            super(board, piece, destinationCoordinates);
+        }
+    }
 
+    public static final class PawnPromotionMove extends PawnMove {
+        public PawnPromotionMove(final Board board,
+                        final Piece piece,
+                        final int destinationCoordinates){
+            super(board, piece, destinationCoordinates);
+        }
+    }
 
-    public static final class EnPassentCaptureMove extends Move {
-        final Piece capturedPiece;
+    public static class PawnAttackMove extends AttackMove {
 
-        public EnPassentCaptureMove(final Board board,
+        final Piece attackedPiece;
+
+        public PawnAttackMove(final Board board,
+                          final Piece piece,
+                          final int destinationCoordinates,
+                          final Piece attackedPiece) {
+            super(board, piece, destinationCoordinates, attackedPiece);
+            this.attackedPiece = attackedPiece;
+        }
+    }
+
+    public static final class PawnEnPassentAttackMove extends PawnAttackMove {
+        final Piece attackedPiece;
+
+        public PawnEnPassentAttackMove(final Board board,
                              final Piece piece,
                              final int destinationCoordinates,
-                             final Piece capturedPiece){
-            super(board, piece, destinationCoordinates);
-            this.capturedPiece = capturedPiece;
+                             final Piece attackedPiece){
+            super(board, piece, destinationCoordinates, attackedPiece);
+            this.attackedPiece = attackedPiece;
         }
+    }
 
-        // TODO: implement
-        @Override
-        public Board execute() {
-            // Switch active player
-            return null;
+    public static abstract class CastleMove extends Move {
+        public CastleMove(final Board board,
+                         final Piece piece,
+                         final int destinationCoordinates) {
+            super(board, piece, destinationCoordinates);
+        }
+    }
+
+    public static abstract class KingSideCastleMove extends CastleMove {
+        public KingSideCastleMove(final Board board,
+                                  final Piece piece,
+                                  final int destinationCoordinates) {
+            super(board, piece, destinationCoordinates);
+        }
+    }
+
+    public static abstract class QueenSideCastleMove extends CastleMove {
+        public QueenSideCastleMove(final Board board,
+                                   final Piece piece,
+                                   final int destinationCoordinates) {
+            super(board, piece, destinationCoordinates);
+        }
+    }
+
+    public static final class NullMove extends Move {
+        public NullMove(final Board board,
+                        final Piece piece,
+                        final int destinationCoordinates){
+            super(board, piece, destinationCoordinates);
         }
     }
 }
