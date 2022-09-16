@@ -143,6 +143,13 @@ public class Board {
         return this.whitePieces;
     }
 
+    public Collection<Move> getAllLegalMoves() {
+        final List<Move> legalMoves = new ArrayList<>();
+        legalMoves.addAll(this.whitePlayer.getLegalMoves());
+        legalMoves.addAll(this.blackPlayer.getLegalMoves());
+        return ImmutableList.copyOf(legalMoves);
+    }
+
 
     public static class BoardBuilder {
 

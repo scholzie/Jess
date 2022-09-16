@@ -10,6 +10,8 @@ public abstract class Move {
     final Piece movedPiece;
     final int destinationCoordinate;
 
+    public static Move NULL_MOVE = new NullMove();
+
     private Move(final Board board,
          final Piece movedPiece,
          final int destinationCoordinates) {
@@ -47,6 +49,10 @@ public abstract class Move {
         builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
 
         return builder.build();
+    }
+
+    public int getCurrentCoordinate() {
+        return this.movedPiece.getPiecePosition();
     }
 
     public static final class MajorMove extends Move {
@@ -144,10 +150,13 @@ public abstract class Move {
     }
 
     public static final class NullMove extends Move {
-        public NullMove(final Board board,
-                        final Piece piece,
-                        final int destinationCoordinates){
-            super(board, piece, destinationCoordinates);
+        public NullMove(){
+            super(null, null, -1);
+        }
+
+        @Override
+        public Board execute() {
+            throw new RuntimeException("Instance of NullMove not executable.");
         }
     }
 }
