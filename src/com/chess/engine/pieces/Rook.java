@@ -20,6 +20,11 @@ public class Rook extends Piece {
         super(PieceType.ROOK, piecePosition, pieceAlliance);
     }
 
+//    public Rook(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
+//        super(PieceType.ROOK, piecePosition, pieceAlliance);
+//        this.isFirstMove = false;
+//    }
+
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
 

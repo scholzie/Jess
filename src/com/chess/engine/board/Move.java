@@ -2,9 +2,7 @@ package com.chess.engine.board;
 
 import com.chess.engine.pieces.Pawn;
 import com.chess.engine.pieces.Piece;
-
-import java.util.Locale;
-import java.util.Objects;
+import com.chess.engine.pieces.Rook;
 
 import static com.chess.engine.board.Board.*;
 
@@ -75,7 +73,6 @@ public abstract class Move {
         final BoardBuilder builder = new BoardBuilder();
         for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
             // Copy all pieces except the one we're moving
-            // TODO hashcode and equals for Piece
             if(!this.movedPiece.equals(piece)) {
                 builder.setPiece(piece);
             }
@@ -87,7 +84,7 @@ public abstract class Move {
 
         //TODO Impl
         builder.setPiece(this.movedPiece.movePiece((this)));
-        builder.setMoveMaker(this.board.nextPlayer());
+        builder.setMoveMaker(this.board.nextPlayerAlliance());
 
         return builder.build();
     }
@@ -168,7 +165,7 @@ public abstract class Move {
             final Pawn movedPawn = (Pawn)this.movedPiece.movePiece(this);
             // When a player executes a 2-space jump, that pawn is now eligible for en passant capture
             builder.setEnPassantPawn(movedPawn);
-            builder.setMoveMaker(this.board.nextPlayer());
+            builder.setMoveMaker(this.board.nextPlayerAlliance());
             return builder.build();
         }
 
@@ -208,33 +205,91 @@ public abstract class Move {
     }
 
     static abstract class CastleMove extends Move {
+        protected final Rook castleRook;
+        protected final int rookStart;
+        protected final int rookDestination;
+
         public CastleMove(final Board board,
                          final Piece piece,
-                         final int destinationCoordinates) {
+                         final int destinationCoordinates,
+                          final Rook castleRook,
+                          final int rookStart,
+                          final int rookDestination) {
             super(board, piece, destinationCoordinates);
+
+            if(!this.movedPiece.getPieceType().isKing()) {
+                throw new RuntimeException("You cannot castle a piece other than the king");
+            }
+
+            this.castleRook = castleRook;
+            this.rookStart = rookStart;
+            this.rookDestination = rookDestination;
+        }
+
+        public Rook getCastleRook() {
+            return this.castleRook;
+        }
+
+        @Override
+        public boolean isCastlingMove() { return true; }
+
+        @Override
+        public Board execute() {
+            final BoardBuilder builder = new BoardBuilder();
+
+            // Set uninvolved pieces
+            for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
+                if(!this.movedPiece.equals(piece) && !piece.equals(this.castleRook)) {
+                    builder.setPiece(piece);
+                }
+            }
+
+            // Set all opponent's pieces
+            for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
+                builder.setPiece(piece);
+            }
+
+            // Set king and rook
+            builder.setPiece(this.movedPiece.movePiece(this)); // 'this' should be the king
+            Rook newRook = new Rook(this.rookDestination, this.castleRook.getPieceAlliance());
+            newRook.setFirstMove(false);
+            builder.setPiece(newRook);
+            builder.setMoveMaker(this.board.nextPlayerAlliance());
+
+            return builder.build();
         }
     }
 
     public static final class KingSideCastleMove extends CastleMove {
         public KingSideCastleMove(final Board board,
                                   final Piece piece,
-                                  final int destinationCoordinates) {
-            super(board, piece, destinationCoordinates);
+                                  final int destinationCoordinates,
+                                  final Rook castleRook,
+                                  final int rookStart,
+                                  final int rookDestination) {
+            super(board, piece, destinationCoordinates, castleRook, rookStart, rookDestination);
         }
 
-        // Move the king to the side 2
-        // Move the Rook to the next space on the other side of the king (distance of 2)
+        @Override
+        public String toString() {
+            return "O-O";
+        }
     }
 
     public static final class QueenSideCastleMove extends CastleMove {
         public QueenSideCastleMove(final Board board,
                                    final Piece piece,
-                                   final int destinationCoordinates) {
-            super(board, piece, destinationCoordinates);
+                                   final int destinationCoordinates,
+                                   final Rook castleRook,
+                                   final int rookStart,
+                                   final int rookDestination) {
+            super(board, piece, destinationCoordinates, castleRook, rookStart, rookDestination);
         }
 
-        // Move the king to the side 2 spaces
-        // Move the rook to the next space on the other side of the king (distance of 3)
+        @Override
+        public String toString() {
+            return "O-O-O";
+        }
     }
 
     public static final class NullMove extends Move {

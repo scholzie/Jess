@@ -150,7 +150,7 @@ public class Board {
         return ImmutableList.copyOf(legalMoves);
     }
 
-    public Alliance nextPlayer() {
+    public Alliance nextPlayerAlliance() {
         return this.currentPlayer.getOpponent().getAlliance();
     }
 
