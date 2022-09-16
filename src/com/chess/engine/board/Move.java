@@ -127,7 +127,7 @@ public abstract class Move {
         }
     }
 
-    public static abstract class KingSideCastleMove extends CastleMove {
+    public static final class KingSideCastleMove extends CastleMove {
         public KingSideCastleMove(final Board board,
                                   final Piece piece,
                                   final int destinationCoordinates) {
@@ -135,7 +135,7 @@ public abstract class Move {
         }
     }
 
-    public static abstract class QueenSideCastleMove extends CastleMove {
+    public static final class QueenSideCastleMove extends CastleMove {
         public QueenSideCastleMove(final Board board,
                                    final Piece piece,
                                    final int destinationCoordinates) {
