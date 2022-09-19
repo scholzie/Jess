@@ -2,6 +2,7 @@ package com.chess.engine.board;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public enum BoardUtils {
 
@@ -35,6 +36,10 @@ public enum BoardUtils {
     public final static List<Boolean> SECOND_RANK = initRow(48);
     public final static List<Boolean> FIRST_RANK = initRow(56);
 
+    public static final String[] ALGEBRAIC_NOTATION = initializeAlgebraicNotation();
+
+    public static final Map<String, Integer> BOARD_COORDINATES = initializeBoardCoordinateMap();
+
 
     private static List<Boolean> initColumn(int columnNumber) {
 
@@ -62,11 +67,27 @@ public enum BoardUtils {
         return List.of(row);
     }
 
+    private static String[] initializeAlgebraicNotation() {
+        return null;
+    }
+
+    private static Map<String, Integer> initializeBoardCoordinateMap() {
+        return null;
+    }
+
 //    private BoardUtils() {
 //        throw new RuntimeException("BoardUtils is not an instantiable object Class!");
 //    }
 
     public static boolean isValidTileCoordinate(final int tileCoordinate) {
         return tileCoordinate >= START_TILE_INDEX && tileCoordinate < NUM_BOARD_TILES;
+    }
+
+    public static String getPositionAtCoordinate(final int coordinate) {
+        return ALGEBRAIC_NOTATION[coordinate];
+    }
+
+    public static int getCoordinateAtPosition(final String position) {
+        return BOARD_COORDINATES.get(position);
     }
 }

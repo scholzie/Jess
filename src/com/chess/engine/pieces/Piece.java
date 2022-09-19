@@ -23,14 +23,13 @@ public abstract class Piece {
         this.cachedHashCode = computeHashCode();
     }
 
-    Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
-        this.pieceType = pieceType;
-        this.pieceAlliance = pieceAlliance;
-        this.piecePosition = piecePosition;
-        // TODO more work here!
-        this.isFirstMove = false;
-        this.cachedHashCode = computeHashCode();
-    }
+//    Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
+//        this.pieceType = pieceType;
+//        this.pieceAlliance = pieceAlliance;
+//        this.piecePosition = piecePosition;
+//        this.isFirstMove = false;
+//        this.cachedHashCode = computeHashCode();
+//    }
 
 
     private int computeHashCode() {
@@ -89,25 +88,36 @@ public abstract class Piece {
         this.isFirstMove = status;
     }
 
+    public int getPieceValue() {
+        return this.pieceType.getPieceValue();
+    }
+
     public enum PieceType {
 
-        PAWN("P"),
-        KNIGHT("N"),
-        BISHOP("B"),
-        ROOK("R") {
+        PAWN(100, "P"),
+        KNIGHT(300,"N"),
+        BISHOP(330, "B"),
+        ROOK(500,"R") {
             @Override
             public boolean isRook() { return true; }
         },
-        KING("K") {
+        KING(10000, "K") {
             @Override
             public boolean isKing() { return true; }
         },
-        QUEEN("Q");
+        QUEEN(900, "Q");
 
-        private String pieceName;
+        private final int value;
+        private final String pieceName;
 
-        PieceType(final String pieceName) {
+        PieceType(final int value,
+                final String pieceName) {
+            this.value = value;
             this.pieceName = pieceName;
+        }
+
+        public int getPieceValue() {
+            return this.value;
         }
 
         @Override

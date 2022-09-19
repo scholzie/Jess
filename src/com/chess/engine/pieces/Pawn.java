@@ -4,6 +4,8 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
+import com.chess.engine.board.Move.PawnAttackMove;
+import com.chess.engine.board.Move.PawnJump;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
@@ -25,9 +27,12 @@ public class Pawn extends Piece {
 //    private boolean hasMoved;
 
     public Pawn(final int piecePosition, final Alliance pieceAlliance) {
-        super(PieceType.PAWN, piecePosition, pieceAlliance);
+        super(PieceType.PAWN, piecePosition, pieceAlliance, true);
 
-//        this.hasMoved = false;
+    }
+
+    public Pawn(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
+        super(PieceType.PAWN, piecePosition, pieceAlliance, isFirstMove);
     }
 
     @Override
@@ -49,14 +54,14 @@ public class Pawn extends Piece {
                 // TODO need to deal with promotions
                 legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
             } else if(currentCandidateOffset == 16 &&
-                    !this.isFirstMove() && (
+                    this.isFirstMove() && (
                         (BoardUtils.SEVENTH_RANK.get(this.piecePosition) && this.pieceAlliance.isBlack()) ||
                         (BoardUtils.SECOND_RANK.get(this.piecePosition) && this.pieceAlliance.isWhite()))) {
                 final int behindCandidateDestinationCoordinate = this.piecePosition +
                         (this.pieceAlliance.getForwardDirection() * 8);
                 if(board.getTile(behindCandidateDestinationCoordinate).isTileEmpty() &&
                     board.getTile(candidateDestinationCoordinate).isTileEmpty()) {
-                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    legalMoves.add(new PawnJump(board, this, candidateDestinationCoordinate));
                 }
             } else if(currentCandidateOffset == 7 &&
                     !(this.pieceAlliance.isWhite() && BoardUtils.H_FILE.get(this.piecePosition)) &&
@@ -67,7 +72,7 @@ public class Pawn extends Piece {
                 if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidateTile = board.getTile(candidateDestinationCoordinate).getPiece();
                     if(pieceOnCandidateTile.pieceAlliance != this.pieceAlliance){
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
+                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
                     }
                 }
 
@@ -80,7 +85,7 @@ public class Pawn extends Piece {
                 if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidateTile = board.getTile(candidateDestinationCoordinate).getPiece();
                     if(pieceOnCandidateTile.pieceAlliance != this.pieceAlliance){
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
+                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
                     }
                 }
             }

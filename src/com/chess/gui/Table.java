@@ -27,14 +27,13 @@ public class Table {
 
     private final JFrame gameFrame;
     private final BoardPanel boardPanel;
+    private final TakenPiecesPanel takenPiecesPanel;
     private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400,350);
     private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10,10);
     private final String pieceTheme;
-    private static String defaultPieceArtPath = "art/pieces/";
-    private static String DEFAULT_PIECE_THEME = "simple";
-    private Color darkTileColor = new Color(60, 95, 135); // Blue
-    private Color lightTileColor = new Color(229, 229, 200); // Beige
+    private final Color darkTileColor = new Color(60, 95, 135); // Blue
+    private final Color lightTileColor = new Color(229, 229, 200); // Beige
 
     private Tile moveSourceTile;
     private Piece humanMovedPiece;
@@ -47,7 +46,7 @@ public class Table {
 
     public Table() {
         this.chessBoard = Board.createStandardBoard();
-        this.pieceTheme = DEFAULT_PIECE_THEME;
+        this.pieceTheme = "simple";
 
         this.gameFrame = new JFrame("Jess");
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
@@ -55,8 +54,11 @@ public class Table {
         this.gameFrame.setLayout(new BorderLayout());
         this.boardPanel = new BoardPanel();
         this.boardDirection = BoardDirection.NORMAL;
-        this.highlightLegalMoves = false;
+        this.highlightLegalMoves = true;
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
+
+        this.takenPiecesPanel = new TakenPiecesPanel();
+        this.gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
 
         this.gameFrame.setVisible(true);
     }
@@ -150,6 +152,38 @@ public class Table {
         }
     }
 
+    public static class MoveLog {
+        private final List<Move> moves;
+
+        MoveLog() {
+            this.moves = new ArrayList<>();
+        }
+
+        public List<Move> getMoves() {
+            return this.moves;
+        }
+
+        public void addMove(final Move move) {
+            this.moves.add(move);
+        }
+
+        public int size() {
+            return this.moves.size();
+        }
+
+        public void clear() {
+            this.moves.clear();
+        }
+
+        public boolean removeMove(final Move move) {
+            return this.moves.remove(move);
+        }
+
+        public Move removeMove(final int index){
+            return this.moves.remove(index);
+        }
+    }
+
     private class TilePanel extends JPanel {
         private final int tileId;
 
@@ -219,6 +253,7 @@ public class Table {
             if(board.getTile(this.tileId).getPiece() != null) {
                 // Render piece
                 try {
+                    String defaultPieceArtPath = "art/pieces/";
                     final BufferedImage image = ImageIO.read(new File(defaultPieceArtPath + "/" +
                             pieceTheme + "/" +
                             board.getTile(this.tileId).getPiece().getPieceAlliance().toString().substring(0,1) + "" +
