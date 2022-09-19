@@ -23,8 +23,17 @@ public enum BoardUtils {
     public final static List<Boolean> SECOND_COLUMN = initColumn(1);
     public final static List<Boolean> SEVENTH_COLUMN = initColumn(6);
     public final static List<Boolean> EIGHTH_COLUMN = initColumn(7);
-    public final static List<Boolean> SECOND_ROW = initRow(8);
-    public final static List<Boolean> SEVENTH_ROW = initRow(48);
+
+    // Define Rows
+    // TODO Can I use a 2d ROWS array?
+    public final static List<Boolean> EIGHTH_RANK = initRow(0);
+    public final static List<Boolean> SEVENTH_RANK = initRow(8);
+    public final static List<Boolean> SIXTH_RANK = initRow(16);
+    public final static List<Boolean> FIFTH_RANK = initRow(24);
+    public final static List<Boolean> FOURTH_RANK = initRow(32);
+    public final static List<Boolean> THIRD_RANK = initRow(40);
+    public final static List<Boolean> SECOND_RANK = initRow(48);
+    public final static List<Boolean> FIRST_RANK = initRow(56);
 
 
     private static List<Boolean> initColumn(int columnNumber) {

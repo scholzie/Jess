@@ -16,6 +16,9 @@ public class Table {
     private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400,350);
     private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10,10);
 
+    private Color darkTileColor = new Color(60, 95, 135); // Blue
+    private Color lightTileColor = new Color(229, 229, 200); // Beige
+
 
     public Table() {
         this.gameFrame = new JFrame("Jess");
@@ -44,6 +47,26 @@ public class Table {
             }
         });
         fileMenu.add(openPGN);
+
+        final JMenuItem openFEN = new JMenuItem("Load position from FEN");
+        openFEN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Selected load FEN");
+            }
+        });
+        fileMenu.add(openFEN);
+
+        final JMenuItem exitMenuItem = new JMenuItem("Exit");
+        exitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                System.exit(0);
+            }
+        });
+        fileMenu.add(exitMenuItem);
+
         return fileMenu;
     }
 
@@ -76,6 +99,20 @@ public class Table {
         }
 
         private void assignTileColor() {
+            // First row (Tiles 0-7, or the 8th Rank) starts with white
+            // Every other row also starts with white
+            // TODO generalize number of rows
+            if(BoardUtils.EIGHTH_RANK.get(this.tileId) ||
+                    BoardUtils.SIXTH_RANK.get(this.tileId) ||
+                    BoardUtils.FOURTH_RANK.get(this.tileId) ||
+                    BoardUtils.SECOND_RANK.get(this.tileId)) {
+                setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
+            } else if (BoardUtils.SEVENTH_RANK.get(this.tileId) ||
+                    BoardUtils.FIFTH_RANK.get(this.tileId) ||
+                    BoardUtils.THIRD_RANK.get(this.tileId) ||
+                    BoardUtils.FIRST_RANK.get(this.tileId)) {
+                setBackground(this.tileId % 2 == 0 ? darkTileColor : lightTileColor);
+            }
         }
     }
 }
