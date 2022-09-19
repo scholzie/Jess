@@ -72,19 +72,19 @@ public class Knight extends Piece {
 
     // Column Exclusions
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
-        return BoardUtils.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -17 || candidateOffset == -10 ||
+        return BoardUtils.A_FILE.get(currentPosition) && (candidateOffset == -17 || candidateOffset == -10 ||
                 candidateOffset == 6 || candidateOffset == 15);
     }
 
     private static boolean isSecondColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.SECOND_COLUMN.get(currentPosition) && (candidateOffset == -10 || candidateOffset == 6);
+        return BoardUtils.B_FILE.get(currentPosition) && (candidateOffset == -10 || candidateOffset == 6);
     }
     private static boolean isSeventhColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.SEVENTH_COLUMN.get(currentPosition) && (candidateOffset == -6 || candidateOffset == 10);
+        return BoardUtils.G_FILE.get(currentPosition) && (candidateOffset == -6 || candidateOffset == 10);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == -15 || candidateOffset == -6 ||
+        return BoardUtils.H_FILE.get(currentPosition) && (candidateOffset == -15 || candidateOffset == -6 ||
                         candidateOffset == 10 || candidateOffset == 17);
     }
 }

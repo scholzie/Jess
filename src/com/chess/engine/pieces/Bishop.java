@@ -75,10 +75,10 @@ public class Bishop extends Piece {
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -9 || candidateOffset == 7);
+        return BoardUtils.A_FILE.get(currentPosition) && (candidateOffset == -9 || candidateOffset == 7);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == -7 || candidateOffset == 9);
+        return BoardUtils.H_FILE.get(currentPosition) && (candidateOffset == -7 || candidateOffset == 9);
     }
 }

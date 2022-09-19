@@ -75,12 +75,12 @@ public class King extends Piece {
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
-        return BoardUtils.FIRST_COLUMN.get(currentPosition) &&
+        return BoardUtils.A_FILE.get(currentPosition) &&
                 (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN.get(currentPosition) &&
+        return BoardUtils.H_FILE.get(currentPosition) &&
                 (candidateOffset == 1 || candidateOffset == -7 || candidateOffset == 9);
     }
 }

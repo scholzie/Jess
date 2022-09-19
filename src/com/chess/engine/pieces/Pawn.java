@@ -59,8 +59,8 @@ public class Pawn extends Piece {
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 }
             } else if(currentCandidateOffset == 7 &&
-                    !(this.pieceAlliance.isWhite() && BoardUtils.EIGHTH_COLUMN.get(this.piecePosition)) &&
-                    !(this.pieceAlliance.isBlack() && BoardUtils.FIRST_COLUMN.get(this.piecePosition))) {
+                    !(this.pieceAlliance.isWhite() && BoardUtils.H_FILE.get(this.piecePosition)) &&
+                    !(this.pieceAlliance.isBlack() && BoardUtils.A_FILE.get(this.piecePosition))) {
                 // White can't capture in last column
                 // Black can't capture in first column
                 // Target tile must be occupied by a piece of the opposite color
@@ -72,8 +72,8 @@ public class Pawn extends Piece {
                 }
 
             } else if(currentCandidateOffset == 9 &&
-                    !(this.pieceAlliance.isBlack() && BoardUtils.EIGHTH_COLUMN.get(this.piecePosition)) &&
-                    !(this.pieceAlliance.isWhite() && BoardUtils.FIRST_COLUMN.get(this.piecePosition))) {
+                    !(this.pieceAlliance.isBlack() && BoardUtils.H_FILE.get(this.piecePosition)) &&
+                    !(this.pieceAlliance.isWhite() && BoardUtils.A_FILE.get(this.piecePosition))) {
                 // white can't capture in first column
                 // black can't capture in last column
                 // Target tile must be occupied by a piece of the opposite color

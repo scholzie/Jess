@@ -19,10 +19,10 @@ public enum BoardUtils {
     public final static int MIN_SQUARE = FIRST_COLUMN_CELLS[0];
     public final static int MAX_SQUARE = LAST_COLUMN_CELLS[LAST_COLUMN_CELLS.length - 1];
 
-    public final static List<Boolean> FIRST_COLUMN = initColumn(0);
-    public final static List<Boolean> SECOND_COLUMN = initColumn(1);
-    public final static List<Boolean> SEVENTH_COLUMN = initColumn(6);
-    public final static List<Boolean> EIGHTH_COLUMN = initColumn(7);
+    public final static List<Boolean> A_FILE = initColumn(0);
+    public final static List<Boolean> B_FILE = initColumn(1);
+    public final static List<Boolean> G_FILE = initColumn(6);
+    public final static List<Boolean> H_FILE = initColumn(7);
 
     // Define Rows
     // TODO Can I use a 2d ROWS array?

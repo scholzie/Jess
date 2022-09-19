@@ -77,10 +77,10 @@ public class Rook extends Piece {
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN.get(currentPosition) && (candidateOffset == -1);
+        return BoardUtils.A_FILE.get(currentPosition) && (candidateOffset == -1);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN.get(currentPosition) && (candidateOffset == 1);
+        return BoardUtils.H_FILE.get(currentPosition) && (candidateOffset == 1);
     }
 }
