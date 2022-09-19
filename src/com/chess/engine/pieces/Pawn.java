@@ -31,9 +31,9 @@ public class Pawn extends Piece {
 
     }
 
-    public Pawn(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
-        super(PieceType.PAWN, piecePosition, pieceAlliance, isFirstMove);
-    }
+//    public Pawn(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
+//        super(PieceType.PAWN, piecePosition, pieceAlliance, isFirstMove);
+//    }
 
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
@@ -52,7 +52,7 @@ public class Pawn extends Piece {
             final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
             if(currentCandidateOffset == 8 && candidateDestinationTile.isTileEmpty()) {
                 // TODO need to deal with promotions
-                legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                legalMoves.add(new Move.PawnMove(board, this, candidateDestinationCoordinate));
             } else if(currentCandidateOffset == 16 &&
                     this.isFirstMove() && (
                         (BoardUtils.SEVENTH_RANK.get(this.piecePosition) && this.pieceAlliance.isBlack()) ||

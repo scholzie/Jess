@@ -214,29 +214,24 @@ public abstract class Move {
     }
 
     public static class PawnAttackMove extends AttackMove {
-
-        final Piece attackedPiece;
-
         public PawnAttackMove(final Board board,
-                          final Piece piece,
+                          final Piece pieceMoved,
                           final int destinationCoordinates,
                           final Piece attackedPiece) {
-            super(board, piece, destinationCoordinates, attackedPiece);
-            this.attackedPiece = attackedPiece;
+            super(board, pieceMoved, destinationCoordinates, attackedPiece);
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            return this == o || o instanceof PawnAttackMove && super.equals(o);
+        }
+
+        @Override
+        public String toString() {
+            return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).charAt(0) + "x" +
+                    BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
         }
     }
-
-//    public static final class PawnEnPassentAttackMove extends PawnAttackMove {
-//        final Piece attackedPiece;
-//
-//        public PawnEnPassentAttackMove(final Board board,
-//                             final Piece piece,
-//                             final int destinationCoordinates,
-//                             final Piece attackedPiece){
-//            super(board, piece, destinationCoordinates, attackedPiece);
-//            this.attackedPiece = attackedPiece;
-//        }
-//    }
 
     static abstract class CastleMove extends Move {
         protected final Rook castleRook;
@@ -329,12 +324,27 @@ public abstract class Move {
 
     public static final class NullMove extends Move {
         public NullMove(){
-            super(null, null, -1);
+            super(null, -1);
+        }
+
+        @Override
+        public int getCurrentCoordinate() {
+            return -1;
+        }
+
+        @Override
+        public int getDestinationCoordinate() {
+            return -1;
         }
 
         @Override
         public Board execute() {
-            throw new RuntimeException("Instance of NullMove not executable.");
+            throw new RuntimeException("cannot execute null move!");
+        }
+
+        @Override
+        public String toString() {
+            return "Null Move";
         }
     }
 }
