@@ -63,6 +63,13 @@ public class TakenPiecesPanel extends JPanel {
             }
         });
 
+        blackTakenPieces.sort(new Comparator<Piece>() {
+            @Override
+            public int compare(Piece o1, Piece o2) {
+                return Ints.compare(o1.getPieceValue(), o2.getPieceValue());
+            }
+        });
+
         for(final Piece takenPiece : whiteTakenPieces) {
             try {
                 // TODO generalize for theme

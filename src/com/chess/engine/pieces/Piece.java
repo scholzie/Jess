@@ -23,15 +23,6 @@ public abstract class Piece {
         this.cachedHashCode = computeHashCode();
     }
 
-//    Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
-//        this.pieceType = pieceType;
-//        this.pieceAlliance = pieceAlliance;
-//        this.piecePosition = piecePosition;
-//        this.isFirstMove = false;
-//        this.cachedHashCode = computeHashCode();
-//    }
-
-
     private int computeHashCode() {
         // Is this the same as Objects.hash(piecePosition, pieceAlliance, pieceType, isFirstMove); ?
         int result = pieceType.hashCode();
