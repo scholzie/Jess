@@ -159,6 +159,7 @@ public class Board {
         Map<Integer, Piece> boardConfig;
         Alliance nextMoveMaker;
         Pawn enPassantPawn;
+        Move transitionMove;
 
         public BoardBuilder() {
             this.boardConfig = new HashMap<>();
@@ -180,6 +181,11 @@ public class Board {
 
         public void setEnPassantPawn(final Pawn enPassantPawn) {
             this.enPassantPawn = enPassantPawn;
+        }
+
+        public BoardBuilder setMoveTransition(final Move transitionMove) {
+            this.transitionMove = transitionMove;
+            return this;
         }
     }
 }

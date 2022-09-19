@@ -20,12 +20,12 @@ public abstract class Player {
     private final boolean isInCheck;
 
     Player(final Board board,
-           final Collection<Move> legalMoves,
-           final Collection<Move> opponentMoves) {
+           final Collection<Move> playerLegalMoves,
+           final Collection<Move> opponentLegalMoves) {
         this.board = board;
         this.playerKing = establishKing();
-        this.legalMoves = ImmutableList.copyOf(Iterables.concat(legalMoves, calculateCastlingMoves(legalMoves, opponentMoves)));
-        this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
+        this.legalMoves = ImmutableList.copyOf(Iterables.concat(playerLegalMoves, calculateCastlingMoves(playerLegalMoves, opponentLegalMoves)));
+        this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentLegalMoves).isEmpty();
     }
 
     protected static Collection<Move> calculateAttacksOnTile(final int piecePosition, final Collection<Move> moves) {
@@ -83,17 +83,17 @@ public abstract class Player {
     public MoveTransition makeMove(final Move move) {
         if(!isMoveLegal(move)) {
             // Effectively no-op. Transition to the same board.
-            return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
+            return new MoveTransition(this.board, this.board, move, MoveStatus.ILLEGAL_MOVE);
         }
-        final Board transitionBoard = move.execute();
-        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transitionBoard.currentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
-                transitionBoard.currentPlayer().getLegalMoves());
+        final Board transitionedBoard = move.execute();
+        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transitionedBoard.currentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
+                transitionedBoard.currentPlayer().getLegalMoves());
 
         if(!kingAttacks.isEmpty()) {
-            return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+            return new MoveTransition(this.board, this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
         }
 
-        return new MoveTransition(transitionBoard, move, MoveStatus.DONE);
+        return new MoveTransition(this.board, transitionedBoard, move, MoveStatus.DONE);
     }
 
     public King getPlayerKing() {

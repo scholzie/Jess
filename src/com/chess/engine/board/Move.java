@@ -85,6 +85,7 @@ public abstract class Move {
         //TODO Impl
         builder.setPiece(this.movedPiece.movePiece((this)));
         builder.setMoveMaker(this.board.nextPlayerAlliance());
+        builder.setMoveTransition(this);
 
         return builder.build();
     }
@@ -142,6 +143,17 @@ public abstract class Move {
                         final int destinationCoordinates){
             super(board, piece, destinationCoordinates);
         }
+
+        @Override
+        public boolean equals(final Object o) {
+            return this == o || o instanceof PawnMove && super.equals(o);
+        }
+
+        // TODO impl
+//        @Override
+//        public String toString() {
+//            return BoardUtils.INSTANCE.getPositionAtCoordinate(this.destinationCoordinate);
+//        }
     }
 
     public static final class PawnJump extends Move {
@@ -166,6 +178,7 @@ public abstract class Move {
             // When a player executes a 2-space jump, that pawn is now eligible for en passant capture
             builder.setEnPassantPawn(movedPawn);
             builder.setMoveMaker(this.board.nextPlayerAlliance());
+            builder.setMoveTransition(this);
             return builder.build();
         }
 
@@ -192,17 +205,17 @@ public abstract class Move {
         }
     }
 
-    public static final class PawnEnPassentAttackMove extends PawnAttackMove {
-        final Piece attackedPiece;
-
-        public PawnEnPassentAttackMove(final Board board,
-                             final Piece piece,
-                             final int destinationCoordinates,
-                             final Piece attackedPiece){
-            super(board, piece, destinationCoordinates, attackedPiece);
-            this.attackedPiece = attackedPiece;
-        }
-    }
+//    public static final class PawnEnPassentAttackMove extends PawnAttackMove {
+//        final Piece attackedPiece;
+//
+//        public PawnEnPassentAttackMove(final Board board,
+//                             final Piece piece,
+//                             final int destinationCoordinates,
+//                             final Piece attackedPiece){
+//            super(board, piece, destinationCoordinates, attackedPiece);
+//            this.attackedPiece = attackedPiece;
+//        }
+//    }
 
     static abstract class CastleMove extends Move {
         protected final Rook castleRook;
@@ -255,6 +268,7 @@ public abstract class Move {
             newRook.setFirstMove(false);
             builder.setPiece(newRook);
             builder.setMoveMaker(this.board.nextPlayerAlliance());
+            builder.setMoveTransition(this);
 
             return builder.build();
         }
