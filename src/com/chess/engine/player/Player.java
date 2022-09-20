@@ -56,7 +56,7 @@ public abstract class Player {
         return this.isInCheck;
     }
 
-    public boolean isInCheckmate() {
+    public boolean isInCheckMate() {
         return this.isInCheck && !hasEscapeMoves();
     }
 
@@ -70,7 +70,7 @@ public abstract class Player {
         return false;
     }
 
-    public boolean isInStalemate() {
+    public boolean isInStaleMate() {
         // No legal moves left to make
         return !this.isInCheck && !hasEscapeMoves();
     }
@@ -78,6 +78,11 @@ public abstract class Player {
     // TODO: implement
     public boolean isCastled() {
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.getAlliance().toString();
     }
 
     public MoveTransition makeMove(final Move move) {
@@ -108,4 +113,12 @@ public abstract class Player {
     public abstract Alliance getAlliance();
     public abstract Player getOpponent();
     protected abstract Collection<Move> calculateCastlingMoves(Collection<Move> playerLegals, Collection<Move> opponentsLegals);
+
+    public boolean isKingSideCastleCapable() {
+        return this.playerKing.isKingSideCastleCapable();
+    }
+
+    public boolean isQueenSideCastleCapable() {
+        return this.playerKing.isQueenSideCastleCapable();
+    }
 }

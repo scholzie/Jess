@@ -15,18 +15,28 @@ import java.util.List;
 
 public class King extends Piece {
     private final static int[] CANDIDATE_MOVE_COORDINATES = { -9, -8, -7, -1, 1, 7, 8, 9 };
-    private boolean isInCheck;
 
-    public boolean isInCheck() {
-        return this.isInCheck;
-    }
+    private boolean isCastled;
+    private boolean kingSideCastleCapable;
+    private boolean queenSideCastleCapable;
 
-    public King(final int piecePosition, final Alliance pieceAlliance) {
+    public King(final int piecePosition, final Alliance pieceAlliance,
+                final boolean kingSideCastleCapable,
+                final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceAlliance, true);
+        this.isCastled = false;
+        this.kingSideCastleCapable = kingSideCastleCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
     }
 
-    public King(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
+    public King(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove,
+                final boolean isCastled,
+                final boolean kingSideCastleCapable,
+                final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceAlliance, isFirstMove);
+        this.isCastled = isCastled;
+        this.kingSideCastleCapable = kingSideCastleCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
     }
 
     @Override
@@ -72,14 +82,36 @@ public class King extends Piece {
     }
 
     @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof final King king)) {
+            return false;
+        }
+        if (!super.equals(other)) {
+            return false;
+        }
+        return isCastled == king.isCastled;
+    }
+
+    @Override
+    public int hashCode() {
+        return (31 * super.hashCode()) + (this.isCastled ? 1 : 0);
+    }
+
+    @Override
     public String toString() {
         return PieceType.KING.toString();
     }
 
     @Override
     public King movePiece(final Move move) {
-        return new King(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+        // After moving, king cannot castle
+        return new King(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance(), false,
+                move.isCastlingMove(), false, false);
     }
+
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
         return BoardUtils.A_FILE.get(currentPosition) &&
@@ -89,5 +121,13 @@ public class King extends Piece {
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.H_FILE.get(currentPosition) &&
                 (candidateOffset == 1 || candidateOffset == -7 || candidateOffset == 9);
+    }
+
+    public boolean isKingSideCastleCapable() {
+        return this.kingSideCastleCapable;
+    }
+
+    public boolean isQueenSideCastleCapable() {
+        return this.queenSideCastleCapable;
     }
 }

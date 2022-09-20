@@ -59,7 +59,7 @@ public class GameHistoryPanel extends JPanel {
     }
 
     private String calculateCheckAndCheckmateSymbol(final Board board) {
-        if(board.currentPlayer().isInCheckmate()) {
+        if(board.currentPlayer().isInCheckMate()) {
             return "#";
         } else if (board.currentPlayer().isInCheck()) {
             return "+";

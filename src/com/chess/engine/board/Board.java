@@ -6,8 +6,11 @@ import com.chess.engine.player.BlackPlayer;
 import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Board {
 
@@ -81,11 +84,11 @@ public class Board {
         return ImmutableList.copyOf(activePieces);
     }
 
-    public Player getBlackPlayer() {
+    public Player blackPlayer() {
         return this.blackPlayer;
     }
 
-    public Player getWhitePlayer() {
+    public Player whitePlayer() {
         return this.whitePlayer;
     }
 
@@ -113,7 +116,7 @@ public class Board {
                 .setPiece(new Knight(1, Alliance.BLACK))
                 .setPiece(new Bishop(2, Alliance.BLACK))
                 .setPiece(new Queen(3, Alliance.BLACK))
-                .setPiece(new King(4, Alliance.BLACK))
+                .setPiece(new King(4, Alliance.BLACK, true, true))
                 .setPiece(new Bishop(5, Alliance.BLACK))
                 .setPiece(new Knight(6, Alliance.BLACK))
                 .setPiece(new Rook(7, Alliance.BLACK));
@@ -126,7 +129,7 @@ public class Board {
                 .setPiece(new Knight(57, Alliance.WHITE))
                 .setPiece(new Bishop(58, Alliance.WHITE))
                 .setPiece(new Queen(59, Alliance.WHITE))
-                .setPiece(new King(60, Alliance.WHITE))
+                .setPiece(new King(60, Alliance.WHITE, true, true))
                 .setPiece(new Bishop(61, Alliance.WHITE))
                 .setPiece(new Knight(62, Alliance.WHITE))
                 .setPiece(new Rook(63, Alliance.WHITE));
@@ -161,6 +164,10 @@ public class Board {
 
     public Pawn getEnPassantPawn() {
         return this.enPassantPawn;
+    }
+
+    public Collection<Piece> getAllPieces() {
+        return Stream.concat(this.whitePieces.stream(), this.blackPieces.stream()).collect(Collectors.toList());
     }
 
     public static class BoardBuilder {

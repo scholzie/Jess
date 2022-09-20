@@ -6,7 +6,7 @@ import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 
 public enum Alliance {
-    WHITE {
+    WHITE("White") {
         @Override
         public int getForwardDirection() { return -1; }
         @Override
@@ -27,7 +27,7 @@ public enum Alliance {
             return whitePlayer;
         }
     },
-    BLACK {
+    BLACK("Black") {
         @Override
         public int getForwardDirection() { return 1; }
         @Override
@@ -49,6 +49,17 @@ public enum Alliance {
             return blackPlayer;
         }
     };
+
+    private final String displayName;
+
+    Alliance(final String displayName){
+        this.displayName = displayName;
+    }
+
+    @Override
+    public String toString() {
+        return this.displayName;
+    }
 
     public abstract int getForwardDirection();
     public abstract int getEnemyForwardDirection();
