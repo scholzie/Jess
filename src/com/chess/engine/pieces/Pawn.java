@@ -6,6 +6,7 @@ import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Move.PawnAttackMove;
 import com.chess.engine.board.Move.PawnJump;
+import com.chess.engine.board.Move.PawnMove;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
@@ -52,7 +53,7 @@ public class Pawn extends Piece {
             final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
             if(currentCandidateOffset == 8 && candidateDestinationTile.isTileEmpty()) {
                 // TODO need to deal with promotions
-                legalMoves.add(new Move.PawnMove(board, this, candidateDestinationCoordinate));
+                legalMoves.add(new PawnMove(board, this, candidateDestinationCoordinate));
             } else if(currentCandidateOffset == 16 &&
                     this.isFirstMove() && (
                         (BoardUtils.SEVENTH_RANK.get(this.piecePosition) && this.pieceAlliance.isBlack()) ||

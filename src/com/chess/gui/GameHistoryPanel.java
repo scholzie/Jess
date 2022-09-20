@@ -40,13 +40,17 @@ public class GameHistoryPanel extends JPanel {
                 currentRow++;
             }
         }
-        if(moveHistory.size() > 0){
-            final Move lastMove = moveHistory.getMoves().get(moveHistory.size() -1);
+        if(moveHistory.getMoves().size() > 0){
+            final Move lastMove = moveHistory.getMoves().get(moveHistory.size() - 1);
             final String moveText = lastMove.toString();
-            // TODO use .isCheckingMove?
-            if(lastMove.getMovedPiece().isWhite()) {
-                this.model.setValueAt(moveText + calculateCheckAndCheckmateSymbol(board), currentRow - 1, 1);
+            if(lastMove.getMovedPiece().getPieceAlliance() == null) {
+                throw new RuntimeException("Moved piece has no piece alliance!");
             }
+
+            // TODO use .isCheckingMove?
+            this.model.setValueAt(moveText + calculateCheckAndCheckmateSymbol(board),
+                    lastMove.getMovedPiece().isWhite() ? currentRow : currentRow - 1,
+                    lastMove.getMovedPiece().isWhite() ? 0 : 1);
         }
 
         final JScrollBar vScrollBar = scrollPane.getVerticalScrollBar();
@@ -116,6 +120,7 @@ public class GameHistoryPanel extends JPanel {
 
             if(column == 0){
                 currentRow.setWhiteMove((String)aValue);
+                fireTableRowsInserted(row, row);
             } else if (column == 1) {
                 currentRow.setBlackMove((String)aValue);
                 fireTableCellUpdated(row, column);

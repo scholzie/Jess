@@ -28,9 +28,14 @@ public class Table {
     private final JFrame gameFrame;
     private final BoardPanel boardPanel;
     private final TakenPiecesPanel takenPiecesPanel;
+    private final GameHistoryPanel gameHistoryPanel;
+    private final MoveLog moveLog;
     private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400,350);
     private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10,10);
+    private final static Dimension TAKEN_PIECES_PANEL_DIMENSION = new Dimension(60,350);
+    private final static Dimension GAME_HISTORY_PANEL_DIMENSION = new Dimension(100,350);
+
     private final String pieceTheme;
     private final Color darkTileColor = new Color(60, 95, 135); // Blue
     private final Color lightTileColor = new Color(229, 229, 200); // Beige
@@ -46,6 +51,7 @@ public class Table {
 
     public Table() {
         this.chessBoard = Board.createStandardBoard();
+        this.moveLog = new MoveLog();
         this.pieceTheme = "simple";
 
         this.gameFrame = new JFrame("Jess");
@@ -55,10 +61,15 @@ public class Table {
         this.boardPanel = new BoardPanel();
         this.boardDirection = BoardDirection.NORMAL;
         this.highlightLegalMoves = true;
-        this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
 
         this.takenPiecesPanel = new TakenPiecesPanel();
+//        this.takenPiecesPanel.setPreferredSize(TAKEN_PIECES_PANEL_DIMENSION);
+        this.gameHistoryPanel = new GameHistoryPanel();
+//        this.gameHistoryPanel.setPreferredSize(GAME_HISTORY_PANEL_DIMENSION);
+
+        this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
         this.gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
+        this.gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
 
         this.gameFrame.setVisible(true);
     }
@@ -215,12 +226,19 @@ public class Table {
                             final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
                             if(transition.getMoveStatus().isDone()) {
                                 chessBoard = transition.getToBoard();
-                                // TODO add move to move log
+                                moveLog.addMove(move);
                             }
                             moveSourceTile = null;
                             humanMovedPiece = null;
                         }
-                        invokeLater(() -> boardPanel.drawBoard(chessBoard));
+                        invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                gameHistoryPanel.redo(chessBoard, moveLog);
+                                takenPiecesPanel.redo(moveLog);
+                                boardPanel.drawBoard(chessBoard);
+                            }
+                        });
                     }
                 }
 
@@ -256,7 +274,7 @@ public class Table {
                     String defaultPieceArtPath = "art/pieces/";
                     final BufferedImage image = ImageIO.read(new File(defaultPieceArtPath + "/" +
                             pieceTheme + "/" +
-                            board.getTile(this.tileId).getPiece().getPieceAlliance().toString().substring(0,1) + "" +
+                            board.getTile(this.tileId).getPiece().getPieceAlliance().toString().charAt(0) + "" +
                             board.getTile(this.tileId).getPiece().toString() +
                             ".gif"));
                     add(new JLabel(new ImageIcon(image)));

@@ -33,6 +33,11 @@ public abstract class Move {
     }
 
     @Override
+    public String toString() {
+        return movedPiece.getPieceType().toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+    }
+
+    @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Move)) return false;
@@ -117,7 +122,7 @@ public abstract class Move {
 
         @Override
         public String toString() {
-            return movedPiece.getPieceType().toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+            return movedPiece.getPieceType().toString() + BoardUtils.INSTANCE.getPositionAtCoordinate(this.destinationCoordinate);
         }
     }
 
@@ -170,14 +175,13 @@ public abstract class Move {
             return this == o || o instanceof PawnMove && super.equals(o);
         }
 
-        // TODO impl
-//        @Override
-//        public String toString() {
-//            return BoardUtils.INSTANCE.getPositionAtCoordinate(this.destinationCoordinate);
-//        }
+        @Override
+        public String toString() {
+            return BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+        }
     }
 
-    public static final class PawnJump extends Move {
+    public static final class PawnJump extends PawnMove {
         public PawnJump(final Board board,
                         final Piece piece,
                         final int destinationCoordinates){
@@ -198,8 +202,10 @@ public abstract class Move {
             final Pawn movedPawn = (Pawn)this.movedPiece.movePiece(this);
             // When a player executes a 2-space jump, that pawn is now eligible for en passant capture
             builder.setEnPassantPawn(movedPawn);
+            builder.setPiece(movedPawn);
             builder.setMoveMaker(this.board.nextPlayerAlliance());
             builder.setMoveTransition(this);
+
             return builder.build();
         }
 
@@ -324,16 +330,13 @@ public abstract class Move {
 
     public static final class NullMove extends Move {
         public NullMove(){
-            super(null, -1);
+            super(null, 65);
         }
 
         @Override
         public int getCurrentCoordinate() {
-            return -1;
-        }
-
-        @Override
-        public int getDestinationCoordinate() {
+            // Tracking currentCoordinate is delegated to the Piece, but a NullMove has no Piece.
+            // TODO Create NullPiece to handle this
             return -1;
         }
 
