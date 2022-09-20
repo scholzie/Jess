@@ -4,10 +4,7 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-import com.chess.engine.board.Move.PawnAttackMove;
-import com.chess.engine.board.Move.PawnEnPassantAttacktMove;
-import com.chess.engine.board.Move.PawnJump;
-import com.chess.engine.board.Move.PawnMove;
+import com.chess.engine.board.Move.*;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
@@ -53,10 +50,8 @@ public class Pawn extends Piece {
 
             final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
             if(currentCandidateOffset == 8 && candidateDestinationTile.isTileEmpty()) {
-                if(this.pieceAlliance.isBlack() && BoardUtils.FIRST_RANK.get(candidateDestinationCoordinate)) {
-                    // TODO need to deal with promotions
-                } else if (this.pieceAlliance.isWhite() && BoardUtils.EIGHTH_RANK.get(candidateDestinationCoordinate)) {
-                    // TODO Promotion
+                if(this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+                    legalMoves.add(new PawnPromotionMove(new PawnMove(board, this, candidateDestinationCoordinate), this.getPromotionPiece()));
                 } else {
                     legalMoves.add(new PawnMove(board, this, candidateDestinationCoordinate));
                 }
@@ -79,20 +74,23 @@ public class Pawn extends Piece {
                 if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidateTile = board.getTile(candidateDestinationCoordinate).getPiece();
                     if(pieceOnCandidateTile.pieceAlliance != this.pieceAlliance){
-                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
+                        if(this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+                            legalMoves.add(new PawnPromotionMove(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile), this.getPromotionPiece()));
+                        } else {
+                            legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
+                        }
                     }
                 } else if (board.getEnPassantPawn() != null) {
                     // En Passant
                     // Attacked piece must:
                     //  - Be a pawn of opposite color,
-                    //  - Be directly adjacent to the taking pawn,
-                    //  - Have executed a PawnJumpMove (2 spaces) on the immediately preceding move,
+                    //  - Be directly adjacent to the taking pawn, and
+                    //  - Have executed a PawnJumpMove (2 spaces) on the immediately preceding move
                     // Attacking piece must exercise the option to capture En Passant this turn, or it goes away.
                     final Pawn enPassantPawn = board.getEnPassantPawn();
-                    // TODO check the math here if it breaks!
                     if(enPassantPawn.getPiecePosition() == (this.piecePosition + this.pieceAlliance.getEnemyForwardDirection()) &&
                         this.pieceAlliance != enPassantPawn.pieceAlliance) {
-                        legalMoves.add(new PawnEnPassantAttacktMove(board, this, candidateDestinationCoordinate, enPassantPawn));
+                        legalMoves.add(new PawnEnPassantAttackMove(board, this, candidateDestinationCoordinate, enPassantPawn));
                     }
                 }
 
@@ -105,24 +103,26 @@ public class Pawn extends Piece {
                 if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidateTile = board.getTile(candidateDestinationCoordinate).getPiece();
                     if(pieceOnCandidateTile.pieceAlliance != this.pieceAlliance){
-                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
+                        if(this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+                            legalMoves.add(new PawnPromotionMove(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile), this.getPromotionPiece()));
+                        } else {
+                            legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
+                        }
                     }
                 } else if (board.getEnPassantPawn() != null) {
                     // En Passant
                     // Attacked piece must:
                     //  - Be a pawn of opposite color,
-                    //  - Be directly adjacent to the taking pawn,
-                    //  - Have executed a PawnJumpMove (2 spaces) on the immediately preceding move,
+                    //  - Be directly adjacent to the taking pawn, and
+                    //  - Have executed a PawnJumpMove (2 spaces) on the immediately preceding move
                     // Attacking piece must exercise the option to capture En Passant this turn, or it goes away.
                     final Pawn enPassantPawn = board.getEnPassantPawn();
-                    // TODO check the math here if it breaks!
                     if(enPassantPawn.getPiecePosition() == (this.piecePosition - this.pieceAlliance.getEnemyForwardDirection()) &&
                             this.pieceAlliance != enPassantPawn.pieceAlliance) {
-                        legalMoves.add(new PawnEnPassantAttacktMove(board, this, candidateDestinationCoordinate, enPassantPawn));
+                        legalMoves.add(new PawnEnPassantAttackMove(board, this, candidateDestinationCoordinate, enPassantPawn));
                     }
                 }
             }
-
         }
 
         return ImmutableList.copyOf(legalMoves);
@@ -136,5 +136,10 @@ public class Pawn extends Piece {
     @Override
     public Pawn movePiece(final Move move) {
         return new Pawn(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    }
+
+    public Piece getPromotionPiece() {
+        // TODO handle under-promotions
+        return new Queen(this.piecePosition, this.pieceAlliance, false);
     }
 }

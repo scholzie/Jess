@@ -196,5 +196,19 @@ public class Board {
             this.transitionMove = transitionMove;
             return this;
         }
+
+        public void setAllPiecesExcept(Collection<Piece> pieces, Piece excludedPiece) {
+            for(final Piece piece : pieces) {
+                if(!piece.equals(excludedPiece)) {
+                    this.setPiece(piece);
+                }
+            }
+        }
+
+        public void setAllPieces(Collection<Piece> pieces) {
+            for(final Piece piece : pieces) {
+                this.setPiece(piece);
+            }
+        }
     }
 }
