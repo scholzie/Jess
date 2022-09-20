@@ -163,6 +163,29 @@ public abstract class Move {
         public boolean isCastlingMove() { return false; }
     }
 
+    public static class MajorAttackMove extends AttackMove {
+        public MajorAttackMove(final Board board,
+                               final Piece movedPiece,
+                               final int destinationCoordinate,
+                               final Piece pieceAttacked) {
+            super(board, movedPiece, destinationCoordinate, pieceAttacked);
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            if (this == o) return true;
+            if (!(o instanceof MajorAttackMove)) return false;
+            final MajorAttackMove otherMajorAttackMove = (MajorAttackMove) o;
+            return super.equals(otherMajorAttackMove) && getAttackedPiece().equals(otherMajorAttackMove.getAttackedPiece());
+        }
+
+        @Override
+        public String toString() {
+            return movedPiece.toString() + "x" + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+        }
+
+    }
+
     public static class PawnMove extends Move {
         public PawnMove(final Board board,
                         final Piece piece,
@@ -211,6 +234,38 @@ public abstract class Move {
 
     }
 
+    public static final class PawnEnPassanAttacktMove extends PawnAttackMove {
+        public PawnEnPassanAttacktMove(final Board board,
+                                       final Pawn capturingPawn,
+                                       final int destinationCoordinates,
+                                       final Piece attackedPiece) {
+            super(board, capturingPawn, destinationCoordinates, attackedPiece);
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            return this == o || o instanceof PawnEnPassanAttacktMove && super.equals(o);
+        }
+
+        @Override
+        public Board execute(){
+            final BoardBuilder builder = new BoardBuilder();
+            for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
+                if(!this.movedPiece.equals(piece)){
+                    builder.setPiece(piece);
+                }
+            }
+            for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
+                if(!this.attackedPiece.equals(piece)){
+                    builder.setPiece(piece);
+                }
+            }
+            builder.setPiece(this.movedPiece.movePiece(this));
+            builder.setMoveMaker(this.board.nextPlayerAlliance());
+            return builder.build();
+        }
+    }
+
     public static final class PawnPromotionMove extends PawnMove {
         public PawnPromotionMove(final Board board,
                         final Piece piece,
@@ -242,14 +297,14 @@ public abstract class Move {
     static abstract class CastleMove extends Move {
         protected final Rook castleRook;
         protected final int rookStart;
-        protected final int rookDestination;
+        protected final int castleRookDestination;
 
         public CastleMove(final Board board,
                          final Piece piece,
                          final int destinationCoordinates,
                           final Rook castleRook,
-                          final int rookStart,
-                          final int rookDestination) {
+                          final int castleRookStart,
+                          final int castleRookDestination) {
             super(board, piece, destinationCoordinates);
 
             if(!this.movedPiece.getPieceType().isKing()) {
@@ -257,8 +312,8 @@ public abstract class Move {
             }
 
             this.castleRook = castleRook;
-            this.rookStart = rookStart;
-            this.rookDestination = rookDestination;
+            this.rookStart = castleRookStart;
+            this.castleRookDestination = castleRookDestination;
         }
 
         public Rook getCastleRook() {
@@ -286,13 +341,32 @@ public abstract class Move {
 
             // Set king and rook
             builder.setPiece(this.movedPiece.movePiece(this)); // 'this' should be the king
-            Rook newRook = new Rook(this.rookDestination, this.castleRook.getPieceAlliance());
-            newRook.setFirstMove(false);
+            // TODO look into the first move on normal pieces
+            Rook newRook = new Rook(this.castleRookDestination, this.castleRook.getPieceAlliance());
+//            newRook.setFirstMove(false);
             builder.setPiece(newRook);
             builder.setMoveMaker(this.board.nextPlayerAlliance());
             builder.setMoveTransition(this);
 
             return builder.build();
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = super.hashCode();
+            result = prime * result + this.castleRook.hashCode();
+            result = prime * result + this.castleRookDestination;
+            return result;
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            if(this == o) return true;
+            if(!(o instanceof CastleMove)) return false;
+            final CastleMove oMove = (CastleMove) o;
+            return super.equals(oMove) && this.castleRook.equals(oMove.getCastleRook()) &&
+                    this.castleRookDestination == oMove.castleRookDestination;
         }
     }
 
@@ -310,6 +384,11 @@ public abstract class Move {
         public String toString() {
             return "O-O";
         }
+
+        @Override
+        public boolean equals(final Object o) {
+            return this == o || o instanceof KingSideCastleMove && super.equals(o);
+        }
     }
 
     public static final class QueenSideCastleMove extends CastleMove {
@@ -325,6 +404,11 @@ public abstract class Move {
         @Override
         public String toString() {
             return "O-O-O";
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            return this == o || o instanceof QueenSideCastleMove && super.equals(o);
         }
     }
 

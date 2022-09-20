@@ -4,6 +4,8 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
+import com.chess.engine.board.Move.MajorAttackMove;
+import com.chess.engine.board.Move.MajorMove;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
@@ -45,9 +47,10 @@ public class King extends Piece {
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 
                 if(!candidateDestinationTile.isTileOccupied()) {
-                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
                     // Castling
                     if(currentCandidateOffset == -2 || currentCandidateOffset == 2){
+                        // TODO
                         // King cannot be in check
                         // No tile in the king's path can be in check
                         // Neither the king nor the rook may have been moved previously
@@ -56,7 +59,7 @@ public class King extends Piece {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                     if(this.pieceAlliance != pieceAlliance) { // Piece is an enemy piece
-                        legalMoves.add(new Move.AttackMove(board,
+                        legalMoves.add(new MajorAttackMove(board,
                                 this,
                                 candidateDestinationCoordinate,
                                 pieceAtDestination));
