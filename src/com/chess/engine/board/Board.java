@@ -170,6 +170,12 @@ public class Board {
         return Stream.concat(this.whitePieces.stream(), this.blackPieces.stream()).collect(Collectors.toList());
     }
 
+    public Piece getPiece(int coordinate) {
+        return this.getTile(coordinate).isTileOccupied() ?
+               this.getTile(coordinate).getPiece() :
+               null;
+    }
+
     public static class BoardBuilder {
 
         Map<Integer, Piece> boardConfig;

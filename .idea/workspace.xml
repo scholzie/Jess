@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/tests/chess/engine/board/BoardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/board/BoardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/tests/chess/engine/pieces/PiecesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Jess.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/BlackPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/BlackPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/WhitePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/WhitePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/gui/GameHistoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/gui/GameHistoryPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/tests/chess/engine/board/BoardTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -79,20 +74,7 @@
       <recent name="com.tests.chess.engine.board" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BoardTest">
-    <configuration name="Jess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.chess.Jess" />
-      <module name="Jess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.chess.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PiecesTest">
     <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
@@ -108,10 +90,76 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BoardTest.initialBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.board" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.board.BoardTest" />
+      <option name="METHOD_NAME" value="initialBoard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.testInvalidBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tests.chess.engine.board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tests.chess.engine.board" />
+      <option name="MAIN_CLASS_NAME" value="com.tests.chess.engine.board.BoardTest" />
+      <option name="METHOD_NAME" value="testInvalidBoard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PiecesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tests.chess.engine.pieces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tests.chess.engine.pieces" />
+      <option name="MAIN_CLASS_NAME" value="com.tests.chess.engine.pieces.PiecesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PiecesTest.testMiddleRookOnEmptyBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tests.chess.engine.pieces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tests.chess.engine.pieces" />
+      <option name="MAIN_CLASS_NAME" value="com.tests.chess.engine.pieces.PiecesTest" />
+      <option name="METHOD_NAME" value="testMiddleRookOnEmptyBoard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PiecesTest" />
+        <item itemvalue="JUnit.PiecesTest.testMiddleRookOnEmptyBoard" />
+        <item itemvalue="JUnit.BoardTest.initialBoard" />
         <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="Application.Jess" />
+        <item itemvalue="JUnit.BoardTest.testInvalidBoard" />
       </list>
     </recent_temporary>
   </component>
@@ -170,5 +218,13 @@
         <PinnedItemInfo parentTag="com.chess.engine.board.Board" memberName="currentPlayer" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Jess$BoardTest_testInvalidBoard.ic" NAME="BoardTest.testInvalidBoard Coverage Results" MODIFIED="1663703199406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.tests.chess.engine.board.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Jess$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1663703414237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.tests.chess.engine.board.*</FILTER>
+    </SUITE>
   </component>
 </project>
