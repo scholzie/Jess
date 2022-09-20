@@ -1,6 +1,6 @@
 package com.chess.gui;
 
-import com.chess.engine.board.Move;
+import com.chess.engine.board.move.Move;
 import com.chess.engine.pieces.Piece;
 import com.chess.gui.Table.MoveLog;
 import com.google.common.primitives.Ints;
@@ -11,7 +11,6 @@ import javax.swing.border.EtchedBorder;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.awt.*;

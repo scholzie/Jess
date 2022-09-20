@@ -1,8 +1,13 @@
-package com.chess.engine.board;
+package com.chess.engine.board.move;
 
+import com.chess.engine.board.Board;
+import com.chess.engine.board.BoardUtils;
 import com.chess.engine.pieces.Pawn;
 import com.chess.engine.pieces.Piece;
 import com.chess.engine.pieces.Rook;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static com.chess.engine.board.Board.*;
 
@@ -17,11 +22,11 @@ public abstract class Move {
 
     private Move(final Board board,
          final Piece movedPiece,
-         final int destinationCoordinates) {
+         final int destinationCoordinate) {
         this.board = board;
         this.movedPiece = movedPiece;
         this.isFirstMove = movedPiece.isFirstMove();
-        this.destinationCoordinate = destinationCoordinates;
+        this.destinationCoordinate = destinationCoordinate;
     }
 
     private Move(final Board board,
@@ -114,8 +119,8 @@ public abstract class Move {
     public static final class MajorMove extends Move {
         public MajorMove(final Board board,
                           final Piece piece,
-                          final int destinationCoordinates) {
-            super(board, piece, destinationCoordinates);
+                          final int destinationCoordinate) {
+            super(board, piece, destinationCoordinate);
         }
 
         @Override
@@ -135,9 +140,9 @@ public abstract class Move {
 
         public AttackMove(final Board board,
                           final Piece piece,
-                          final int destinationCoordinates,
+                          final int destinationCoordinate,
                            final Piece attackedPiece) {
-            super(board, piece, destinationCoordinates);
+            super(board, piece, destinationCoordinate);
             this.attackedPiece = attackedPiece;
         }
 
@@ -190,8 +195,8 @@ public abstract class Move {
     public static class PawnMove extends Move {
         public PawnMove(final Board board,
                         final Piece piece,
-                        final int destinationCoordinates){
-            super(board, piece, destinationCoordinates);
+                        final int destinationCoordinate){
+            super(board, piece, destinationCoordinate);
         }
 
         @Override
@@ -213,8 +218,8 @@ public abstract class Move {
     public static final class PawnJump extends PawnMove {
         public PawnJump(final Board board,
                         final Piece piece,
-                        final int destinationCoordinates){
-            super(board, piece, destinationCoordinates);
+                        final int destinationCoordinate){
+            super(board, piece, destinationCoordinate);
         }
 
         @Override
@@ -243,9 +248,9 @@ public abstract class Move {
     public static final class PawnEnPassantAttackMove extends PawnAttackMove {
         public PawnEnPassantAttackMove(final Board board,
                                        final Piece capturingPawn,
-                                       final int destinationCoordinates,
+                                       final int destinationCoordinate,
                                        final Piece attackedPiece) {
-            super(board, capturingPawn, destinationCoordinates, attackedPiece);
+            super(board, capturingPawn, destinationCoordinate, attackedPiece);
         }
 
         @Override
@@ -304,11 +309,9 @@ public abstract class Move {
             // Delegate the move execution to the decorated move
             final Board pawnMovedBoard = this.decoratedMove.execute();
             final BoardBuilder builder = new BoardBuilder();
-            builder.setAllPiecesExcept(pawnMovedBoard.currentPlayer().getActivePieces(), this.promotedPawn);
-            builder.setAllPieces(pawnMovedBoard.currentPlayer().getOpponent().getActivePieces());
-
+            builder.setAllPiecesExcept(pawnMovedBoard.getAllPieces(), this.promotedPawn);
             builder.setPiece(this.promotionPiece.movePiece(this));
-            builder.setMoveMaker(pawnMovedBoard.currentPlayer().getAlliance());
+            builder.setMoveMaker(pawnMovedBoard.currentPlayer().getAlliance()); // NOT next player
 
             return builder.build();
         }
@@ -327,9 +330,9 @@ public abstract class Move {
     public static class PawnAttackMove extends AttackMove {
         public PawnAttackMove(final Board board,
                           final Piece pieceMoved,
-                          final int destinationCoordinates,
+                          final int destinationCoordinate,
                           final Piece attackedPiece) {
-            super(board, pieceMoved, destinationCoordinates, attackedPiece);
+            super(board, pieceMoved, destinationCoordinate, attackedPiece);
         }
 
         @Override
@@ -346,23 +349,23 @@ public abstract class Move {
 
     static abstract class CastleMove extends Move {
         protected final Rook castleRook;
-        protected final int rookStart;
+        protected final int castleRookStart;
         protected final int castleRookDestination;
 
         public CastleMove(final Board board,
                          final Piece piece,
-                         final int destinationCoordinates,
+                         final int destinationCoordinate,
                           final Rook castleRook,
                           final int castleRookStart,
                           final int castleRookDestination) {
-            super(board, piece, destinationCoordinates);
+            super(board, piece, destinationCoordinate);
 
             if(!this.movedPiece.getPieceType().isKing()) {
                 throw new RuntimeException("You cannot castle a piece other than the king");
             }
 
             this.castleRook = castleRook;
-            this.rookStart = castleRookStart;
+            this.castleRookStart = castleRookStart;
             this.castleRookDestination = castleRookDestination;
         }
 
@@ -376,27 +379,18 @@ public abstract class Move {
         @Override
         public Board execute() {
             final BoardBuilder builder = new BoardBuilder();
-
-            // Set uninvolved pieces
-            for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
-                if(!this.movedPiece.equals(piece) && !piece.equals(this.castleRook)) {
+            // TODO fix setAllPiecesExcept method
+//            builder.setAllPiecesExcept(this.board.getAllPieces(), (new ArrayList<>(this.movedPiece, this.castleRook)));
+            for(final Piece piece : this.board.getAllPieces()) {
+                if(!this.movedPiece.equals(piece) && !this.castleRook.equals(piece)) {
                     builder.setPiece(piece);
                 }
             }
-
-            // Set all opponent's pieces
-            for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
-                builder.setPiece(piece);
-            }
-
-            // Set king and rook
             builder.setPiece(this.movedPiece.movePiece(this)); // 'this' should be the king
-            // TODO look into the first move on normal pieces
-            Rook newRook = new Rook(this.castleRookDestination, this.castleRook.getPieceAlliance());
-//            newRook.setFirstMove(false);
+            Rook newRook = new Rook(this.castleRookDestination, this.castleRook.getPieceAlliance(), false);
             builder.setPiece(newRook);
             builder.setMoveMaker(this.board.nextPlayerAlliance());
-            builder.setMoveTransition(this);
+//            builder.setMoveTransition(this);
 
             return builder.build();
         }
@@ -422,11 +416,11 @@ public abstract class Move {
     public static final class KingSideCastleMove extends CastleMove {
         public KingSideCastleMove(final Board board,
                                   final Piece piece,
-                                  final int destinationCoordinates,
+                                  final int destinationCoordinate,
                                   final Rook castleRook,
                                   final int rookStart,
                                   final int rookDestination) {
-            super(board, piece, destinationCoordinates, castleRook, rookStart, rookDestination);
+            super(board, piece, destinationCoordinate, castleRook, rookStart, rookDestination);
         }
 
         @Override
@@ -443,11 +437,11 @@ public abstract class Move {
     public static final class QueenSideCastleMove extends CastleMove {
         public QueenSideCastleMove(final Board board,
                                    final Piece piece,
-                                   final int destinationCoordinates,
+                                   final int destinationCoordinate,
                                    final Rook castleRook,
                                    final int rookStart,
                                    final int rookDestination) {
-            super(board, piece, destinationCoordinates, castleRook, rookStart, rookDestination);
+            super(board, piece, destinationCoordinate, castleRook, rookStart, rookDestination);
         }
 
         @Override

@@ -1,6 +1,9 @@
-package com.chess.engine.board;
+package com.chess.engine.board.move;
 
-import static com.chess.engine.board.Move.NULL_MOVE;
+import com.chess.engine.board.Board;
+import com.chess.engine.board.move.Move;
+
+import static com.chess.engine.board.move.Move.NULL_MOVE;
 
 public class MoveFactory {
 

@@ -1,12 +1,12 @@
 package com.chess.engine.board;
 
 import com.chess.engine.Alliance;
+import com.chess.engine.board.move.Move;
 import com.chess.engine.pieces.*;
 import com.chess.engine.player.BlackPlayer;
 import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -213,6 +213,14 @@ public class Board {
         public void setAllPiecesExcept(Collection<Piece> pieces, Piece excludedPiece) {
             for(final Piece piece : pieces) {
                 if(!piece.equals(excludedPiece)) {
+                    this.setPiece(piece);
+                }
+            }
+        }
+
+        public void setAllPiecesExcept(Collection<Piece> pieces, Collection<Piece> excludePieces) {
+            for(final Piece piece : pieces) {
+                if(!excludePieces.contains(piece)) {
                     this.setPiece(piece);
                 }
             }

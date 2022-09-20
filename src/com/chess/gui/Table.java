@@ -1,6 +1,8 @@
 package com.chess.gui;
 
 import com.chess.engine.board.*;
+import com.chess.engine.board.move.Move;
+import com.chess.engine.board.move.MoveFactory;
 import com.chess.engine.pieces.Piece;
 import com.chess.engine.player.MoveTransition;
 import com.google.common.collect.Lists;

@@ -4,17 +4,16 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Board.BoardBuilder;
 import com.chess.engine.board.BoardUtils;
-import com.chess.engine.board.Move;
-import com.chess.engine.board.MoveFactory;
+import com.chess.engine.board.move.Move;
+import com.chess.engine.board.move.MoveFactory;
 import com.chess.engine.pieces.*;
 import com.chess.engine.player.MoveTransition;
 import com.google.common.collect.Iterables;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardTest {
+public class BoardTest {
 
     @Test
     public void initialBoard() {
