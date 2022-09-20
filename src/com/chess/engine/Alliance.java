@@ -9,6 +9,8 @@ public enum Alliance {
         @Override
         public int getForwardDirection() { return -1; }
         @Override
+        public int getEnemyForwardDirection() { return 1; }
+        @Override
         public boolean isBlack() { return false; }
         @Override
         public boolean isWhite() { return true; }
@@ -23,6 +25,8 @@ public enum Alliance {
         @Override
         public int getForwardDirection() { return 1; }
         @Override
+        public int getEnemyForwardDirection() { return -1; }
+        @Override
         public boolean isBlack() { return true; }
         @Override
         public boolean isWhite() { return false; }
@@ -35,6 +39,7 @@ public enum Alliance {
     };
 
     public abstract int getForwardDirection();
+    public abstract int getEnemyForwardDirection();
     public abstract boolean isBlack();
     public abstract boolean isWhite();
 

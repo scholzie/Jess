@@ -5,6 +5,7 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Move.PawnAttackMove;
+import com.chess.engine.board.Move.PawnEnPassantAttacktMove;
 import com.chess.engine.board.Move.PawnJump;
 import com.chess.engine.board.Move.PawnMove;
 import com.chess.engine.board.Tile;
@@ -52,8 +53,13 @@ public class Pawn extends Piece {
 
             final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
             if(currentCandidateOffset == 8 && candidateDestinationTile.isTileEmpty()) {
-                // TODO need to deal with promotions
-                legalMoves.add(new PawnMove(board, this, candidateDestinationCoordinate));
+                if(this.pieceAlliance.isBlack() && BoardUtils.FIRST_RANK.get(candidateDestinationCoordinate)) {
+                    // TODO need to deal with promotions
+                } else if (this.pieceAlliance.isWhite() && BoardUtils.EIGHTH_RANK.get(candidateDestinationCoordinate)) {
+                    // TODO Promotion
+                } else {
+                    legalMoves.add(new PawnMove(board, this, candidateDestinationCoordinate));
+                }
             } else if(currentCandidateOffset == 16 &&
                     this.isFirstMove() && (
                         (BoardUtils.SEVENTH_RANK.get(this.piecePosition) && this.pieceAlliance.isBlack()) ||
@@ -75,6 +81,19 @@ public class Pawn extends Piece {
                     if(pieceOnCandidateTile.pieceAlliance != this.pieceAlliance){
                         legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
                     }
+                } else if (board.getEnPassantPawn() != null) {
+                    // En Passant
+                    // Attacked piece must:
+                    //  - Be a pawn of opposite color,
+                    //  - Be directly adjacent to the taking pawn,
+                    //  - Have executed a PawnJumpMove (2 spaces) on the immediately preceding move,
+                    // Attacking piece must exercise the option to capture En Passant this turn, or it goes away.
+                    final Pawn enPassantPawn = board.getEnPassantPawn();
+                    // TODO check the math here if it breaks!
+                    if(enPassantPawn.getPiecePosition() == (this.piecePosition + this.pieceAlliance.getEnemyForwardDirection()) &&
+                        this.pieceAlliance != enPassantPawn.pieceAlliance) {
+                        legalMoves.add(new PawnEnPassantAttacktMove(board, this, candidateDestinationCoordinate, enPassantPawn));
+                    }
                 }
 
             } else if(currentCandidateOffset == 9 &&
@@ -87,6 +106,19 @@ public class Pawn extends Piece {
                     final Piece pieceOnCandidateTile = board.getTile(candidateDestinationCoordinate).getPiece();
                     if(pieceOnCandidateTile.pieceAlliance != this.pieceAlliance){
                         legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidateTile));
+                    }
+                } else if (board.getEnPassantPawn() != null) {
+                    // En Passant
+                    // Attacked piece must:
+                    //  - Be a pawn of opposite color,
+                    //  - Be directly adjacent to the taking pawn,
+                    //  - Have executed a PawnJumpMove (2 spaces) on the immediately preceding move,
+                    // Attacking piece must exercise the option to capture En Passant this turn, or it goes away.
+                    final Pawn enPassantPawn = board.getEnPassantPawn();
+                    // TODO check the math here if it breaks!
+                    if(enPassantPawn.getPiecePosition() == (this.piecePosition - this.pieceAlliance.getEnemyForwardDirection()) &&
+                            this.pieceAlliance != enPassantPawn.pieceAlliance) {
+                        legalMoves.add(new PawnEnPassantAttacktMove(board, this, candidateDestinationCoordinate, enPassantPawn));
                     }
                 }
             }

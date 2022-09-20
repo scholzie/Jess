@@ -40,8 +40,7 @@ public abstract class Move {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof Move)) return false;
-        final Move move = (Move) o;
+        if (!(o instanceof final Move move)) return false;
         return getDestinationCoordinate() == move.getDestinationCoordinate() &&
                getMovedPiece().equals(move.getMovedPiece()) &&
                 getCurrentCoordinate() == move.getCurrentCoordinate();
@@ -122,7 +121,7 @@ public abstract class Move {
 
         @Override
         public String toString() {
-            return movedPiece.getPieceType().toString() + BoardUtils.INSTANCE.getPositionAtCoordinate(this.destinationCoordinate);
+            return movedPiece.getPieceType().toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
         }
     }
 
@@ -146,8 +145,7 @@ public abstract class Move {
         @Override
         public boolean equals(final Object o) {
             if (this == o) return true;
-            if (!(o instanceof AttackMove)) return false;
-            final AttackMove otherAttackMove = (AttackMove) o;
+            if (!(o instanceof final AttackMove otherAttackMove)) return false;
             return super.equals(otherAttackMove) && getAttackedPiece().equals(otherAttackMove.getAttackedPiece());
         }
 
@@ -174,8 +172,7 @@ public abstract class Move {
         @Override
         public boolean equals(final Object o) {
             if (this == o) return true;
-            if (!(o instanceof MajorAttackMove)) return false;
-            final MajorAttackMove otherMajorAttackMove = (MajorAttackMove) o;
+            if (!(o instanceof final MajorAttackMove otherMajorAttackMove)) return false;
             return super.equals(otherMajorAttackMove) && getAttackedPiece().equals(otherMajorAttackMove.getAttackedPiece());
         }
 
@@ -234,17 +231,17 @@ public abstract class Move {
 
     }
 
-    public static final class PawnEnPassanAttacktMove extends PawnAttackMove {
-        public PawnEnPassanAttacktMove(final Board board,
-                                       final Pawn capturingPawn,
-                                       final int destinationCoordinates,
-                                       final Piece attackedPiece) {
+    public static final class PawnEnPassantAttacktMove extends PawnAttackMove {
+        public PawnEnPassantAttacktMove(final Board board,
+                                        final Pawn capturingPawn,
+                                        final int destinationCoordinates,
+                                        final Piece attackedPiece) {
             super(board, capturingPawn, destinationCoordinates, attackedPiece);
         }
 
         @Override
         public boolean equals(final Object o) {
-            return this == o || o instanceof PawnEnPassanAttacktMove && super.equals(o);
+            return this == o || o instanceof PawnEnPassantAttacktMove && super.equals(o);
         }
 
         @Override
@@ -363,8 +360,7 @@ public abstract class Move {
         @Override
         public boolean equals(final Object o) {
             if(this == o) return true;
-            if(!(o instanceof CastleMove)) return false;
-            final CastleMove oMove = (CastleMove) o;
+            if(!(o instanceof final CastleMove oMove)) return false;
             return super.equals(oMove) && this.castleRook.equals(oMove.getCastleRook()) &&
                     this.castleRookDestination == oMove.castleRookDestination;
         }
