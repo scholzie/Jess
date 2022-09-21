@@ -19,59 +19,59 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class MiniMaxTest {
 
     // TODO fix numBoardsEvaluated increment
-//    @Test
-//    public void testOpeningDepth1() {
-//        final Board board = Board.createStandardBoard();
-//        final MoveStrategy minMax = new MiniMax(1);
-//        minMax.execute(board);
-//        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
-//        assertEquals(20L, numBoardsEvaluated);
-//    }
-//
-//    @Test
-//    public void testOpeningDepth2() {
-//        final Board board = Board.createStandardBoard();
-//        final MoveStrategy minMax = new MiniMax(2);
-//        minMax.execute(board);
-//        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
-//        assertEquals(400L, numBoardsEvaluated);
-//    }
-//
-//    @Test
-//    public void testOpeningDepth3() {
-//        final Board board = Board.createStandardBoard();
-//        final MoveStrategy minMax = new MiniMax(3);
-//        minMax.execute(board);
-//        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
-//        assertEquals(8902L, numBoardsEvaluated);
-//    }
-//
-//    @Test
-//    public void testOpeningDepth4() {
-//        final Board board = Board.createStandardBoard();
-//        final MoveStrategy minMax = new MiniMax(4);
-//        minMax.execute(board);
-//        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
-//        assertEquals(197281L, numBoardsEvaluated);
-//    }
-//
-//    @Test
-//    public void testOpeningDepth5() {
-//        final Board board = Board.createStandardBoard();
-//        final MoveStrategy minMax = new MiniMax(5);
-//        minMax.execute(board);
-//        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
-//        assertEquals(4865609L, numBoardsEvaluated);
-//    }
-//
-//    @Test
-//    public void testOpeningDepth6() {
-//        final Board board = Board.createStandardBoard();
-//        final MoveStrategy minMax = new MiniMax(6);
-//        minMax.execute(board);
-//        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
-//        assertEquals(119060324L, numBoardsEvaluated);
-//    }
+    @Test
+    public void testOpeningDepth1() {
+        final Board board = Board.createStandardBoard();
+        final MoveStrategy minMax = new MiniMax(1);
+        minMax.execute(board);
+        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
+        assertEquals(20L, numBoardsEvaluated);
+    }
+
+    @Test
+    public void testOpeningDepth2() {
+        final Board board = Board.createStandardBoard();
+        final MoveStrategy minMax = new MiniMax(2);
+        minMax.execute(board);
+        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
+        assertEquals(400L, numBoardsEvaluated);
+    }
+
+    @Test
+    public void testOpeningDepth3() {
+        final Board board = Board.createStandardBoard();
+        final MoveStrategy minMax = new MiniMax(3);
+        minMax.execute(board);
+        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
+        assertEquals(8902L, numBoardsEvaluated);
+    }
+
+    @Test
+    public void testOpeningDepth4() {
+        final Board board = Board.createStandardBoard();
+        final MoveStrategy minMax = new MiniMax(4);
+        minMax.execute(board);
+        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
+        assertEquals(197281L, numBoardsEvaluated);
+    }
+
+    @Test
+    public void testOpeningDepth5() {
+        final Board board = Board.createStandardBoard();
+        final MoveStrategy minMax = new MiniMax(5);
+        minMax.execute(board);
+        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
+        assertEquals(4865609L, numBoardsEvaluated);
+    }
+
+    @Test
+    public void testOpeningDepth6() {
+        final Board board = Board.createStandardBoard();
+        final MoveStrategy minMax = new MiniMax(6);
+        minMax.execute(board);
+        final long numBoardsEvaluated = minMax.getNumBoardsEvaluated();
+        assertEquals(119060324L, numBoardsEvaluated);
+    }
 
     @Test
     /**

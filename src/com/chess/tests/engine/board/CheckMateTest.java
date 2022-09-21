@@ -3,9 +3,11 @@ package com.chess.tests.engine.board;
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Board.BoardBuilder;
+import com.chess.engine.board.move.Move;
 import com.chess.engine.board.move.MoveFactory;
 import com.chess.engine.pieces.*;
 import com.chess.engine.player.MoveTransition;
+import com.chess.engine.player.ai.MoveStrategy;
 import org.junit.jupiter.api.Test;
 
 import static com.chess.engine.board.BoardUtils.getCoordinateAtPosition;
@@ -970,7 +972,7 @@ public class CheckMateTest {
 
     }
 
-    // TODO enable when FEN works
+    // TODO enable when AlphaBeta works
 //    @Test
 //    public void testMateInTwoTest1() {
 //        final Board board = FenUtilities.createGameFromFEN("6k1/1b4pp/1B1Q4/4p1P1/p3q3/2P3r1/P1P2PP1/R5K1 w - - 1 0");

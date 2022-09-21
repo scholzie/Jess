@@ -31,8 +31,8 @@ public class PiecesTest {
         final Board board = builder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 31);
-        assertEquals(blackLegals.size(), 5);
+        assertEquals(31, whiteLegals.size());
+        assertEquals(5, blackLegals.size());
         assertTrue(whiteLegals.contains(MoveFactory
                 .createMove(board, getCoordinateAtPosition("e4"), getCoordinateAtPosition("e8"))));
         assertTrue(whiteLegals.contains(MoveFactory
@@ -75,7 +75,7 @@ public class PiecesTest {
         boardBuilder.setMoveMaker(Alliance.WHITE);
         final Board board = boardBuilder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 13);
+        assertEquals(13, whiteLegals.size());
         final Move wm1 = MoveFactory
                 .createMove(board, getCoordinateAtPosition("e4"), getCoordinateAtPosition("d6"));
         final Move wm2 = MoveFactory
@@ -131,7 +131,7 @@ public class PiecesTest {
         final Move bm8 = MoveFactory
                 .createMove(board2, getCoordinateAtPosition("e5"), getCoordinateAtPosition("f3"));
 
-        assertEquals(blackLegals.size(), 13);
+        assertEquals(13, blackLegals.size());
 
         assertTrue(blackLegals.contains(bm1));
         assertTrue(blackLegals.contains(bm2));
@@ -154,8 +154,8 @@ public class PiecesTest {
         final Board board = boardBuilder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 7);
-        assertEquals(blackLegals.size(), 7);
+        assertEquals(7, whiteLegals.size());
+        assertEquals(7, blackLegals.size());
         final Move wm1 = MoveFactory
                 .createMove(board, getCoordinateAtPosition("a1"), getCoordinateAtPosition("b3"));
         final Move wm2 = MoveFactory
@@ -185,8 +185,8 @@ public class PiecesTest {
         final Board board = builder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 18);
-        assertEquals(blackLegals.size(), 5);
+        assertEquals(18, whiteLegals.size());
+        assertEquals(5, blackLegals.size());
         assertTrue(whiteLegals.contains(MoveFactory
                 .createMove(board, getCoordinateAtPosition("d4"), getCoordinateAtPosition("a7"))));
         assertTrue(whiteLegals.contains(MoveFactory
@@ -217,8 +217,8 @@ public class PiecesTest {
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
         assertEquals(board.getPiece(0), board.getPiece(0));
         assertNotNull(board.getPiece(0));
-        assertEquals(whiteLegals.size(), 12);
-        assertEquals(blackLegals.size(), 5);
+        assertEquals(12, whiteLegals.size());
+        assertEquals(5, blackLegals.size());
         assertTrue(whiteLegals.contains(MoveFactory
                 .createMove(board, getCoordinateAtPosition("a8"), getCoordinateAtPosition("b7"))));
         assertTrue(whiteLegals.contains(MoveFactory
@@ -249,8 +249,8 @@ public class PiecesTest {
         final Board board = builder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 12);
-        assertEquals(blackLegals.size(), 5);
+        assertEquals(12, whiteLegals.size());
+        assertEquals(5, blackLegals.size());
         assertTrue(whiteLegals.contains(MoveFactory
                 .createMove(board, getCoordinateAtPosition("h8"), getCoordinateAtPosition("g7"))));
         assertTrue(whiteLegals.contains(MoveFactory
@@ -281,8 +281,8 @@ public class PiecesTest {
         final Board board = builder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 12);
-        assertEquals(blackLegals.size(), 5);
+        assertEquals(12, whiteLegals.size());
+        assertEquals(5, blackLegals.size());
         assertTrue(whiteLegals.contains(MoveFactory
                 .createMove(board, getCoordinateAtPosition("a1"), getCoordinateAtPosition("b2"))));
         assertTrue(whiteLegals.contains(MoveFactory
@@ -313,8 +313,8 @@ public class PiecesTest {
         final Board board = builder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 12);
-        assertEquals(blackLegals.size(), 5);
+        assertEquals(12, whiteLegals.size());
+        assertEquals(5, blackLegals.size());
         assertTrue(whiteLegals.contains(MoveFactory
                 .createMove(board, getCoordinateAtPosition("h1"), getCoordinateAtPosition("g2"))));
         assertTrue(whiteLegals.contains(MoveFactory
@@ -344,8 +344,8 @@ public class PiecesTest {
         final Board board = builder.build();
         final Collection<Move> whiteLegals = board.whitePlayer().getLegalMoves();
         final Collection<Move> blackLegals = board.blackPlayer().getLegalMoves();
-        assertEquals(whiteLegals.size(), 18);
-        assertEquals(blackLegals.size(), 5);
+        assertEquals(18, whiteLegals.size());
+        assertEquals(5, blackLegals.size());
         assertTrue(whiteLegals.contains(MoveFactory
                 .createMove(board, getCoordinateAtPosition("e4"), getCoordinateAtPosition("e8"))));
         assertTrue(whiteLegals.contains(MoveFactory
@@ -487,7 +487,7 @@ public class PiecesTest {
         final Board board = Board.createStandardBoard();
         final Board board2 = Board.createStandardBoard();
         assertEquals(board.getPiece(60), board2.getPiece(60));
-        assertFalse(board.getPiece(60).equals(null));
+        assertNotNull(board.getPiece(60));
     }
 
     @Test
@@ -496,8 +496,8 @@ public class PiecesTest {
         final Set<Piece> pieceSet = Sets.newHashSet(board.getAllPieces());
         final Set<Piece> whitePieceSet = Sets.newHashSet(board.getWhitePieces());
         final Set<Piece> blackPieceSet = Sets.newHashSet(board.getBlackPieces());
-        assertTrue(pieceSet.size() == 32);
-        assertTrue(whitePieceSet.size() == 16);
-        assertTrue(blackPieceSet.size() == 16);
+        assertEquals(32, pieceSet.size());
+        assertEquals(16, whitePieceSet.size());
+        assertEquals(16, blackPieceSet.size());
     }
 }

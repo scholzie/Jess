@@ -2,7 +2,6 @@ package com.chess.tests.engine.util;
 
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
-import com.chess.engine.board.move.Move;
 import com.chess.engine.board.move.MoveFactory;
 import com.chess.engine.player.MoveTransition;
 import com.chess.engine.util.FENUtils;
