@@ -227,7 +227,7 @@ public class Table {
                             final Move move = MoveFactory.createMove(chessBoard, moveSourceTile.getTileCoordinate(), tileId);
                             final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
                             if(transition.getMoveStatus().isDone()) {
-                                chessBoard = transition.getToBoard();
+                                chessBoard = transition.getTransitionBoard();
                                 moveLog.addMove(move);
                             }
                             moveSourceTile = null;

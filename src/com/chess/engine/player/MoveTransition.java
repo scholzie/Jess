@@ -6,16 +6,16 @@ import com.chess.engine.board.move.Move;
 public class MoveTransition {
 
     private final Board fromBoard;
-    private final Board toBoard;
+    private final Board transitionBoard;
     private final Move transitionMove;
     private final MoveStatus moveStatus;
 
     public MoveTransition(final Board fromBoard,
-                          final Board toBoard,
+                          final Board transitionBoard,
                           final Move transitionMove,
                           final MoveStatus moveStatus) {
         this.fromBoard = fromBoard;
-        this.toBoard = toBoard;
+        this.transitionBoard = transitionBoard;
         this.transitionMove = transitionMove;
         this.moveStatus = moveStatus;
     }
@@ -28,11 +28,12 @@ public class MoveTransition {
         return this.fromBoard;
     }
 
-    public Board getToBoard() {
-        return this.toBoard;
+    public Board getTransitionBoard() {
+        return this.transitionBoard;
     }
 
     public Move getTransitionMove() {
         return this.transitionMove;
     }
+
 }

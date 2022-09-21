@@ -22,28 +22,28 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("g2"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("g2"),
                         getCoordinateAtPosition("g4")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("d8"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("d8"),
                         getCoordinateAtPosition("h4")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        assertTrue(t4.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t4.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -57,48 +57,48 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("a7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("a7"),
                         getCoordinateAtPosition("a6")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("d1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("d1"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("a6"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("a6"),
                         getCoordinateAtPosition("a5")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("f1"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("f1"),
                         getCoordinateAtPosition("c4")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("a5"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("a5"),
                         getCoordinateAtPosition("a4")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("f3"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("f3"),
                         getCoordinateAtPosition("f7")));
 
         assertTrue(t7.getMoveStatus().isDone());
-        assertTrue(t7.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t7.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -112,90 +112,90 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("f1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("f1"),
                         getCoordinateAtPosition("c4")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("d7"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("d7"),
                         getCoordinateAtPosition("d6")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("g1"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("g1"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("c8"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("c8"),
                         getCoordinateAtPosition("g4")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("b1"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("b1"),
                         getCoordinateAtPosition("c3")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("g7"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("g7"),
                         getCoordinateAtPosition("g6")));
 
         assertTrue(t8.getMoveStatus().isDone());
 
-        final MoveTransition t9 = t8.getToBoard()
+        final MoveTransition t9 = t8.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t8.getToBoard(), getCoordinateAtPosition("f3"),
+                .makeMove(MoveFactory.createMove(t8.getTransitionBoard(), getCoordinateAtPosition("f3"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t9.getMoveStatus().isDone());
 
-        final MoveTransition t10 = t9.getToBoard()
+        final MoveTransition t10 = t9.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t9.getToBoard(), getCoordinateAtPosition("g4"),
+                .makeMove(MoveFactory.createMove(t9.getTransitionBoard(), getCoordinateAtPosition("g4"),
                         getCoordinateAtPosition("d1")));
 
         assertTrue(t10.getMoveStatus().isDone());
 
-        final MoveTransition t11 = t10.getToBoard()
+        final MoveTransition t11 = t10.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t10.getToBoard(), getCoordinateAtPosition("c4"),
+                .makeMove(MoveFactory.createMove(t10.getTransitionBoard(), getCoordinateAtPosition("c4"),
                         getCoordinateAtPosition("f7")));
 
         assertTrue(t11.getMoveStatus().isDone());
 
-        final MoveTransition t12 = t11.getToBoard()
+        final MoveTransition t12 = t11.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t11.getToBoard(), getCoordinateAtPosition("e8"),
+                .makeMove(MoveFactory.createMove(t11.getTransitionBoard(), getCoordinateAtPosition("e8"),
                         getCoordinateAtPosition("e7")));
 
         assertTrue(t12.getMoveStatus().isDone());
 
-        final MoveTransition t13 = t12.getToBoard()
+        final MoveTransition t13 = t12.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t12.getToBoard(), getCoordinateAtPosition("c3"),
+                .makeMove(MoveFactory.createMove(t12.getTransitionBoard(), getCoordinateAtPosition("c3"),
                         getCoordinateAtPosition("d5")));
 
         assertTrue(t13.getMoveStatus().isDone());
-        assertTrue(t13.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t13.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -209,90 +209,90 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("d2"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("d2"),
                         getCoordinateAtPosition("d4")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("d7"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("d7"),
                         getCoordinateAtPosition("d6")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("d4"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("d4"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("d8"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("d8"),
                         getCoordinateAtPosition("e7")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("e5"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("e5"),
                         getCoordinateAtPosition("d6")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e4")));
 
         assertTrue(t8.getMoveStatus().isDone());
 
-        final MoveTransition t9 = t8.getToBoard()
+        final MoveTransition t9 = t8.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t8.getToBoard(), getCoordinateAtPosition("f1"),
+                .makeMove(MoveFactory.createMove(t8.getTransitionBoard(), getCoordinateAtPosition("f1"),
                         getCoordinateAtPosition("e2")));
 
         assertTrue(t9.getMoveStatus().isDone());
 
-        final MoveTransition t10 = t9.getToBoard()
+        final MoveTransition t10 = t9.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t9.getToBoard(), getCoordinateAtPosition("e4"),
+                .makeMove(MoveFactory.createMove(t9.getTransitionBoard(), getCoordinateAtPosition("e4"),
                         getCoordinateAtPosition("g2")));
 
         assertTrue(t10.getMoveStatus().isDone());
 
-        final MoveTransition t11 = t10.getToBoard()
+        final MoveTransition t11 = t10.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t10.getToBoard(), getCoordinateAtPosition("d6"),
+                .makeMove(MoveFactory.createMove(t10.getTransitionBoard(), getCoordinateAtPosition("d6"),
                         getCoordinateAtPosition("c7")));
 
         assertTrue(t11.getMoveStatus().isDone());
 
-        final MoveTransition t12 = t11.getToBoard()
+        final MoveTransition t12 = t11.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t11.getToBoard(), getCoordinateAtPosition("g2"),
+                .makeMove(MoveFactory.createMove(t11.getTransitionBoard(), getCoordinateAtPosition("g2"),
                         getCoordinateAtPosition("h1")));
 
         assertTrue(t12.getMoveStatus().isDone());
 
-        final MoveTransition t13 = t12.getToBoard()
+        final MoveTransition t13 = t12.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t12.getToBoard(), getCoordinateAtPosition("d1"),
+                .makeMove(MoveFactory.createMove(t12.getTransitionBoard(), getCoordinateAtPosition("d1"),
                         getCoordinateAtPosition("d8")));
 
         assertTrue(t13.getMoveStatus().isDone());
-        assertTrue(t13.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t13.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -306,84 +306,84 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("g8"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("g8"),
                         getCoordinateAtPosition("f6")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("b1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("b1"),
                         getCoordinateAtPosition("d2")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("d4"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("d4"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("f6"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("f6"),
                         getCoordinateAtPosition("g4")));
 
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("h2"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("h2"),
                         getCoordinateAtPosition("h3")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("g4"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("g4"),
                         getCoordinateAtPosition("e3")));
 
         assertTrue(t8.getMoveStatus().isDone());
 
-        final MoveTransition t9 = t8.getToBoard()
+        final MoveTransition t9 = t8.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t8.getToBoard(), getCoordinateAtPosition("f2"),
+                .makeMove(MoveFactory.createMove(t8.getTransitionBoard(), getCoordinateAtPosition("f2"),
                         getCoordinateAtPosition("e3")));
 
         assertTrue(t9.getMoveStatus().isDone());
 
-        final MoveTransition t10 = t9.getToBoard()
+        final MoveTransition t10 = t9.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t9.getToBoard(), getCoordinateAtPosition("d8"),
+                .makeMove(MoveFactory.createMove(t9.getTransitionBoard(), getCoordinateAtPosition("d8"),
                         getCoordinateAtPosition("h4")));
 
         assertTrue(t10.getMoveStatus().isDone());
 
-        final MoveTransition t11 = t10.getToBoard()
+        final MoveTransition t11 = t10.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t10.getToBoard(), getCoordinateAtPosition("g2"),
+                .makeMove(MoveFactory.createMove(t10.getTransitionBoard(), getCoordinateAtPosition("g2"),
                         getCoordinateAtPosition("g3")));
 
         assertTrue(t11.getMoveStatus().isDone());
 
-        final MoveTransition t12 = t11.getToBoard()
+        final MoveTransition t12 = t11.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t11.getToBoard(), getCoordinateAtPosition("h4"),
+                .makeMove(MoveFactory.createMove(t11.getTransitionBoard(), getCoordinateAtPosition("h4"),
                         getCoordinateAtPosition("g3")));
 
         assertTrue(t12.getMoveStatus().isDone());
-        assertTrue(t12.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t12.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -397,76 +397,76 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("c7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("c7"),
                         getCoordinateAtPosition("c6")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("g1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("g1"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("d7"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("d7"),
                         getCoordinateAtPosition("d5")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("b1"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("b1"),
                         getCoordinateAtPosition("c3")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("d5"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("d5"),
                         getCoordinateAtPosition("e4")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("c3"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("c3"),
                         getCoordinateAtPosition("e4")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("b8"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("b8"),
                         getCoordinateAtPosition("d7")));
 
         assertTrue(t8.getMoveStatus().isDone());
 
-        final MoveTransition t9 = t8.getToBoard()
+        final MoveTransition t9 = t8.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t8.getToBoard(), getCoordinateAtPosition("d1"),
+                .makeMove(MoveFactory.createMove(t8.getTransitionBoard(), getCoordinateAtPosition("d1"),
                         getCoordinateAtPosition("e2")));
 
         assertTrue(t9.getMoveStatus().isDone());
 
-        final MoveTransition t10 = t9.getToBoard()
+        final MoveTransition t10 = t9.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t9.getToBoard(), getCoordinateAtPosition("g8"),
+                .makeMove(MoveFactory.createMove(t9.getTransitionBoard(), getCoordinateAtPosition("g8"),
                         getCoordinateAtPosition("f6")));
 
         assertTrue(t10.getMoveStatus().isDone());
 
-        final MoveTransition t11 = t10.getToBoard()
+        final MoveTransition t11 = t10.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t10.getToBoard(), getCoordinateAtPosition("e4"),
+                .makeMove(MoveFactory.createMove(t10.getTransitionBoard(), getCoordinateAtPosition("e4"),
                         getCoordinateAtPosition("d6")));
 
         assertTrue(t11.getMoveStatus().isDone());
-        assertTrue(t11.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t11.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -480,97 +480,97 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("g1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("g1"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("b8"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("b8"),
                         getCoordinateAtPosition("c6")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("f1"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("f1"),
                         getCoordinateAtPosition("c4")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("c6"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("c6"),
                         getCoordinateAtPosition("d4")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("f3"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("f3"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("d8"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("d8"),
                         getCoordinateAtPosition("g5")));
 
         assertTrue(t8.getMoveStatus().isDone());
 
-        final MoveTransition t9 = t8.getToBoard()
+        final MoveTransition t9 = t8.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t8.getToBoard(), getCoordinateAtPosition("e5"),
+                .makeMove(MoveFactory.createMove(t8.getTransitionBoard(), getCoordinateAtPosition("e5"),
                         getCoordinateAtPosition("f7")));
 
         assertTrue(t9.getMoveStatus().isDone());
 
-        final MoveTransition t10 = t9.getToBoard()
+        final MoveTransition t10 = t9.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t9.getToBoard(), getCoordinateAtPosition("g5"),
+                .makeMove(MoveFactory.createMove(t9.getTransitionBoard(), getCoordinateAtPosition("g5"),
                         getCoordinateAtPosition("g2")));
 
         assertTrue(t10.getMoveStatus().isDone());
 
-        final MoveTransition t11 = t10.getToBoard()
+        final MoveTransition t11 = t10.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t10.getToBoard(), getCoordinateAtPosition("h1"),
+                .makeMove(MoveFactory.createMove(t10.getTransitionBoard(), getCoordinateAtPosition("h1"),
                         getCoordinateAtPosition("f1")));
 
         assertTrue(t11.getMoveStatus().isDone());
 
-        final MoveTransition t12 = t11.getToBoard()
+        final MoveTransition t12 = t11.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t11.getToBoard(), getCoordinateAtPosition("g2"),
+                .makeMove(MoveFactory.createMove(t11.getTransitionBoard(), getCoordinateAtPosition("g2"),
                         getCoordinateAtPosition("e4")));
 
         assertTrue(t12.getMoveStatus().isDone());
 
-        final MoveTransition t13 = t12.getToBoard()
+        final MoveTransition t13 = t12.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t12.getToBoard(), getCoordinateAtPosition("c4"),
+                .makeMove(MoveFactory.createMove(t12.getTransitionBoard(), getCoordinateAtPosition("c4"),
                         getCoordinateAtPosition("e2")));
 
         assertTrue(t13.getMoveStatus().isDone());
 
-        final MoveTransition t14 = t13.getToBoard()
+        final MoveTransition t14 = t13.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t13.getToBoard(), getCoordinateAtPosition("d4"),
+                .makeMove(MoveFactory.createMove(t13.getTransitionBoard(), getCoordinateAtPosition("d4"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t14.getMoveStatus().isDone());
-        assertTrue(t14.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t14.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -584,55 +584,55 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("g1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("g1"),
                         getCoordinateAtPosition("e2")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("b8"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("b8"),
                         getCoordinateAtPosition("c6")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("b1"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("b1"),
                         getCoordinateAtPosition("c3")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("c6"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("c6"),
                         getCoordinateAtPosition("d4")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("g2"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("g2"),
                         getCoordinateAtPosition("g3")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("d4"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("d4"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t8.getMoveStatus().isDone());
-        assertTrue(t8.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t8.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -646,84 +646,84 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("g1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("g1"),
                         getCoordinateAtPosition("e2")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("d8"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("d8"),
                         getCoordinateAtPosition("h4")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("b1"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("b1"),
                         getCoordinateAtPosition("c3")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("b8"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("b8"),
                         getCoordinateAtPosition("c6")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("g2"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("g2"),
                         getCoordinateAtPosition("g3")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("h4"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("h4"),
                         getCoordinateAtPosition("g5")));
 
 
         assertTrue(t8.getMoveStatus().isDone());
 
-        final MoveTransition t9 = t8.getToBoard()
+        final MoveTransition t9 = t8.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t8.getToBoard(), getCoordinateAtPosition("d2"),
+                .makeMove(MoveFactory.createMove(t8.getTransitionBoard(), getCoordinateAtPosition("d2"),
                         getCoordinateAtPosition("d4")));
 
         assertTrue(t9.getMoveStatus().isDone());
 
-        final MoveTransition t10 = t9.getToBoard()
+        final MoveTransition t10 = t9.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t9.getToBoard(), getCoordinateAtPosition("c6"),
+                .makeMove(MoveFactory.createMove(t9.getTransitionBoard(), getCoordinateAtPosition("c6"),
                         getCoordinateAtPosition("d4")));
 
         assertTrue(t10.getMoveStatus().isDone());
 
-        final MoveTransition t11 = t10.getToBoard()
+        final MoveTransition t11 = t10.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t10.getToBoard(), getCoordinateAtPosition("c1"),
+                .makeMove(MoveFactory.createMove(t10.getTransitionBoard(), getCoordinateAtPosition("c1"),
                         getCoordinateAtPosition("g5")));
 
         assertTrue(t11.getMoveStatus().isDone());
 
-        final MoveTransition t12 = t11.getToBoard()
+        final MoveTransition t12 = t11.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t11.getToBoard(), getCoordinateAtPosition("d4"),
+                .makeMove(MoveFactory.createMove(t11.getTransitionBoard(), getCoordinateAtPosition("d4"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t12.getMoveStatus().isDone());
-        assertTrue(t12.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t12.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -738,97 +738,97 @@ public class CheckMateTest {
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getToBoard()
+        final MoveTransition t2 = t1.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t1.getToBoard(), getCoordinateAtPosition("e7"),
+                .makeMove(MoveFactory.createMove(t1.getTransitionBoard(), getCoordinateAtPosition("e7"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getToBoard()
+        final MoveTransition t3 = t2.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t2.getToBoard(), getCoordinateAtPosition("g1"),
+                .makeMove(MoveFactory.createMove(t2.getTransitionBoard(), getCoordinateAtPosition("g1"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t3.getMoveStatus().isDone());
 
-        final MoveTransition t4 = t3.getToBoard()
+        final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t3.getToBoard(), getCoordinateAtPosition("b8"),
+                .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("b8"),
                         getCoordinateAtPosition("c6")));
 
         assertTrue(t4.getMoveStatus().isDone());
 
-        final MoveTransition t5 = t4.getToBoard()
+        final MoveTransition t5 = t4.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t4.getToBoard(), getCoordinateAtPosition("f1"),
+                .makeMove(MoveFactory.createMove(t4.getTransitionBoard(), getCoordinateAtPosition("f1"),
                         getCoordinateAtPosition("c4")));
 
         assertTrue(t5.getMoveStatus().isDone());
 
-        final MoveTransition t6 = t5.getToBoard()
+        final MoveTransition t6 = t5.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t5.getToBoard(), getCoordinateAtPosition("c6"),
+                .makeMove(MoveFactory.createMove(t5.getTransitionBoard(), getCoordinateAtPosition("c6"),
                         getCoordinateAtPosition("d4")));
 
         assertTrue(t6.getMoveStatus().isDone());
 
-        final MoveTransition t7 = t6.getToBoard()
+        final MoveTransition t7 = t6.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t6.getToBoard(), getCoordinateAtPosition("f3"),
+                .makeMove(MoveFactory.createMove(t6.getTransitionBoard(), getCoordinateAtPosition("f3"),
                         getCoordinateAtPosition("e5")));
 
         assertTrue(t7.getMoveStatus().isDone());
 
-        final MoveTransition t8 = t7.getToBoard()
+        final MoveTransition t8 = t7.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t7.getToBoard(), getCoordinateAtPosition("d8"),
+                .makeMove(MoveFactory.createMove(t7.getTransitionBoard(), getCoordinateAtPosition("d8"),
                         getCoordinateAtPosition("g5")));
 
         assertTrue(t8.getMoveStatus().isDone());
 
-        final MoveTransition t9 = t8.getToBoard()
+        final MoveTransition t9 = t8.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t8.getToBoard(), getCoordinateAtPosition("e5"),
+                .makeMove(MoveFactory.createMove(t8.getTransitionBoard(), getCoordinateAtPosition("e5"),
                         getCoordinateAtPosition("f7")));
 
         assertTrue(t9.getMoveStatus().isDone());
 
-        final MoveTransition t10 = t9.getToBoard()
+        final MoveTransition t10 = t9.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t9.getToBoard(), getCoordinateAtPosition("g5"),
+                .makeMove(MoveFactory.createMove(t9.getTransitionBoard(), getCoordinateAtPosition("g5"),
                         getCoordinateAtPosition("g2")));
 
         assertTrue(t10.getMoveStatus().isDone());
 
-        final MoveTransition t11 = t10.getToBoard()
+        final MoveTransition t11 = t10.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t10.getToBoard(), getCoordinateAtPosition("h1"),
+                .makeMove(MoveFactory.createMove(t10.getTransitionBoard(), getCoordinateAtPosition("h1"),
                         getCoordinateAtPosition("f1")));
 
         assertTrue(t11.getMoveStatus().isDone());
 
-        final MoveTransition t12 = t11.getToBoard()
+        final MoveTransition t12 = t11.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t11.getToBoard(), getCoordinateAtPosition("g2"),
+                .makeMove(MoveFactory.createMove(t11.getTransitionBoard(), getCoordinateAtPosition("g2"),
                         getCoordinateAtPosition("e4")));
 
         assertTrue(t12.getMoveStatus().isDone());
 
-        final MoveTransition t13 = t12.getToBoard()
+        final MoveTransition t13 = t12.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t12.getToBoard(), getCoordinateAtPosition("c4"),
+                .makeMove(MoveFactory.createMove(t12.getTransitionBoard(), getCoordinateAtPosition("c4"),
                         getCoordinateAtPosition("e2")));
 
         assertTrue(t13.getMoveStatus().isDone());
 
-        final MoveTransition t14 = t13.getToBoard()
+        final MoveTransition t14 = t13.getTransitionBoard()
                 .currentPlayer()
-                .makeMove(MoveFactory.createMove(t13.getToBoard(), getCoordinateAtPosition("d4"),
+                .makeMove(MoveFactory.createMove(t13.getTransitionBoard(), getCoordinateAtPosition("d4"),
                         getCoordinateAtPosition("f3")));
 
         assertTrue(t14.getMoveStatus().isDone());
-        assertTrue(t14.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t14.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -864,7 +864,7 @@ public class CheckMateTest {
                         getCoordinateAtPosition("h5")));
 
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInCheckMate());
     }
 
     @Test
@@ -890,7 +890,7 @@ public class CheckMateTest {
                         getCoordinateAtPosition("b2")));
 
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInCheckMate());
     }
 
     @Test
@@ -913,7 +913,7 @@ public class CheckMateTest {
                         getCoordinateAtPosition("a8")));
 
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -938,7 +938,7 @@ public class CheckMateTest {
                         getCoordinateAtPosition("e7")));
 
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 
@@ -964,7 +964,7 @@ public class CheckMateTest {
                         getCoordinateAtPosition("c1")));
 
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInCheckMate());
 
     }
 

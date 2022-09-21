@@ -80,6 +80,14 @@ public abstract class Player {
         return this.playerKing.isCastled();
     }
 
+    public boolean isWhite() {
+        return this.getAlliance() == Alliance.WHITE;
+    }
+
+    public boolean isBlack() {
+        return this.getAlliance() == Alliance.BLACK;
+    }
+
     @Override
     public String toString() {
         return this.getAlliance().toString();

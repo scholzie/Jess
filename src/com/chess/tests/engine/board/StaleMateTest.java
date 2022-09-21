@@ -35,9 +35,9 @@ public class StaleMateTest {
                 .makeMove(createMove(board, getCoordinateAtPosition("e4"),
                         getCoordinateAtPosition("f5")));
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInStaleMate());
-        assertFalse(t1.getToBoard().currentPlayer().isInCheck());
-        assertFalse(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInStaleMate());
+        assertFalse(t1.getTransitionBoard().currentPlayer().isInCheck());
+        assertFalse(t1.getTransitionBoard().currentPlayer().isInCheckMate());
     }
 
     @Test
@@ -56,9 +56,9 @@ public class StaleMateTest {
                 .makeMove(createMove(board, getCoordinateAtPosition("c5"),
                         getCoordinateAtPosition("c6")));
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInStaleMate());
-        assertFalse(t1.getToBoard().currentPlayer().isInCheck());
-        assertFalse(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInStaleMate());
+        assertFalse(t1.getTransitionBoard().currentPlayer().isInCheck());
+        assertFalse(t1.getTransitionBoard().currentPlayer().isInCheckMate());
     }
 
     @Test
@@ -78,8 +78,8 @@ public class StaleMateTest {
                 .makeMove(createMove(board, getCoordinateAtPosition("a6"),
                         getCoordinateAtPosition("a7")));
         assertTrue(t1.getMoveStatus().isDone());
-        assertTrue(t1.getToBoard().currentPlayer().isInStaleMate());
-        assertFalse(t1.getToBoard().currentPlayer().isInCheck());
-        assertFalse(t1.getToBoard().currentPlayer().isInCheckMate());
+        assertTrue(t1.getTransitionBoard().currentPlayer().isInStaleMate());
+        assertFalse(t1.getTransitionBoard().currentPlayer().isInCheck());
+        assertFalse(t1.getTransitionBoard().currentPlayer().isInCheckMate());
     }
 }
