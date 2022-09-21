@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CheckMateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CheckMateTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/player/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/player/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,22 +70,7 @@
       <recent name="com.tests.chess.engine.board" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StaleMateTest">
-    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.board.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.board" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.board.BoardTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PlayerTest">
     <configuration name="CastlingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
@@ -133,6 +117,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.player.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.PlayerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StaleMateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
@@ -150,11 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlayerTest" />
         <item itemvalue="JUnit.StaleMateTest" />
         <item itemvalue="JUnit.CheckMateTest" />
         <item itemvalue="JUnit.CastlingTest" />
         <item itemvalue="JUnit.CastlingTest.testWhiteKingSideCastle" />
-        <item itemvalue="JUnit.BoardTest" />
       </list>
     </recent_temporary>
   </component>
