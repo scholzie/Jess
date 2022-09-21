@@ -36,6 +36,8 @@ public class CheckMateTest {
 
         assertTrue(t3.getMoveStatus().isDone());
 
+
+
         final MoveTransition t4 = t3.getTransitionBoard()
                 .currentPlayer()
                 .makeMove(MoveFactory.createMove(t3.getTransitionBoard(), getCoordinateAtPosition("d8"),

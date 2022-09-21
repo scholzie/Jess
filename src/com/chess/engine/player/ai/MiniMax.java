@@ -19,11 +19,12 @@ import com.chess.engine.player.MoveTransition;
 public class MiniMax implements MoveStrategy{
 
     private final BoardEvaluator boardEvaluator;
+    private int searchDepth;
     private int numBoardsEvaluated;
 
-    public MiniMax() {
-        // TODO
-        this.boardEvaluator = null;
+    public MiniMax(final int searchDepth) {
+        this.boardEvaluator = new StandardBoardEvaluator();
+        this.searchDepth = searchDepth;
         this.numBoardsEvaluated = 0;
     }
 
@@ -31,23 +32,26 @@ public class MiniMax implements MoveStrategy{
     /**
      * Returns the best move
      */
-    public Move execute(final Board board, final int depth) {
-        Move bestMove = null;
+    public Move execute(final Board board) {
         final long startTime = System.currentTimeMillis();
+
+        Move bestMove = null;
+
         int highestSeenValue = Integer.MIN_VALUE;
         int lowestSeenValue = Integer.MAX_VALUE;
         int currentValue;
 
-        System.out.println(board.currentPlayer() + " thinking with depth = " + depth);
+        System.out.println(board.currentPlayer() + " thinking with depth = " + this.searchDepth);
 
         int numMoves = board.currentPlayer().getLegalMoves().size();
+
         for(final Move move : board.currentPlayer().getLegalMoves()) {
             final MoveTransition moveTransition = board.currentPlayer().makeMove(move);
             if(moveTransition.getMoveStatus().isDone()) {
                 // After evaluating this move, the next player's min/max function needs to run
                 currentValue = board.currentPlayer().isWhite() ?
-                               min(moveTransition.getTransitionBoard(), depth - 1) :
-                               max(moveTransition.getTransitionBoard(), depth - 1);
+                               min(moveTransition.getTransitionBoard(), this.searchDepth - 1) :
+                               max(moveTransition.getTransitionBoard(), this.searchDepth - 1);
 
                 if(board.currentPlayer().isWhite() &&
                         currentValue >= highestSeenValue) {
@@ -59,10 +63,11 @@ public class MiniMax implements MoveStrategy{
                     lowestSeenValue = currentValue;
                     bestMove = move;
                 }
+
             }
         }
 
-        this.numBoardsEvaluated++;
+        final long executionTime = System.currentTimeMillis() - startTime;
         return bestMove;
     }
 
@@ -74,7 +79,7 @@ public class MiniMax implements MoveStrategy{
      */
     public int min(final Board board,
                    final int depth) {
-        if(depth == 0){
+        if(depth == 0 || isEndGameScenario(board)){
             return this.boardEvaluator.evaluate(board, depth);
         }
 
@@ -86,11 +91,13 @@ public class MiniMax implements MoveStrategy{
                 if(currentValue <= lowestSeenValue) {
                     lowestSeenValue = currentValue;
                 }
+                this.numBoardsEvaluated++;
             }
         }
 
         return lowestSeenValue;
     }
+
 
     /**
      * max() makes each possible move and keeps track of highest seen value. max() is co-recursive with min()
@@ -112,11 +119,18 @@ public class MiniMax implements MoveStrategy{
                 if(currentValue >= highestSeenValue){
                     highestSeenValue = currentValue;
                 }
+                this.numBoardsEvaluated++;
             }
         }
 
         return highestSeenValue;
     }
+
+    private boolean isEndGameScenario(final Board board) {
+        return board.currentPlayer().isInCheckMate() ||
+                board.currentPlayer().isInStaleMate();
+    }
+
 
     // Getters & Setters
     @Override

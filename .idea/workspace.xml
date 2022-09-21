@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/BoardEvaluator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MoveStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/player/ai/MiniMaxTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/StandardBoardEvaluator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/MoveTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/MoveTransition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/gui/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/ChessTestSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/ChessTestSuite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/board/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/board/BoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CastlingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CastlingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MoveStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MoveStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CheckMateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CheckMateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/board/StaleMateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/board/StaleMateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/pieces/PiecesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/pieces/PiecesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/player/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/player/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/player/ai/MiniMaxTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/player/ai/MiniMaxTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +53,13 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "inlay.hints",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
     "settings.editor.splitter.proportion": "0.17449194"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.chess.engine.player.ai" />
       <recent name="com.chess.engine.player" />
       <recent name="com.chess.engine.board" />
     </key>
@@ -85,90 +77,94 @@
       <recent name="com.tests.chess.engine.board" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlayerTest">
-    <configuration name="CastlingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MiniMaxTest.testOpeningDepth4">
+    <configuration name="MiniMaxTest.testOpeningDepth1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.board.*" />
+          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.board" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.board.CastlingTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CastlingTest.testWhiteKingSideCastle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.board.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.board" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.board.CastlingTest" />
-      <option name="METHOD_NAME" value="testWhiteKingSideCastle" />
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
+      <option name="METHOD_NAME" value="testOpeningDepth1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CheckMateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MiniMaxTest.testOpeningDepth2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.board.*" />
+          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.board" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.board.CheckMateTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
+      <option name="METHOD_NAME" value="testOpeningDepth2" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MiniMaxTest.testOpeningDepth3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.player.*" />
+          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.PlayerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
+      <option name="METHOD_NAME" value="testOpeningDepth3" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StaleMateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MiniMaxTest.testOpeningDepth4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.board.*" />
+          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.board" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.board.StaleMateTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
+      <option name="METHOD_NAME" value="testOpeningDepth4" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MiniMaxTest.testOpeningDepth6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
+      <option name="METHOD_NAME" value="testOpeningDepth6" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PlayerTest" />
-        <item itemvalue="JUnit.StaleMateTest" />
-        <item itemvalue="JUnit.CheckMateTest" />
-        <item itemvalue="JUnit.CastlingTest" />
-        <item itemvalue="JUnit.CastlingTest.testWhiteKingSideCastle" />
+        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth4" />
+        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth3" />
+        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth2" />
+        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth1" />
+        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth6" />
       </list>
     </recent_temporary>
   </component>
