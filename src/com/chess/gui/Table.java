@@ -4,7 +4,10 @@ import com.chess.engine.board.*;
 import com.chess.engine.board.move.Move;
 import com.chess.engine.board.move.MoveFactory;
 import com.chess.engine.pieces.Piece;
+import com.chess.engine.player.MoveStatus;
 import com.chess.engine.player.MoveTransition;
+import com.chess.engine.player.ai.MiniMax;
+import com.chess.engine.player.ai.MoveStrategy;
 import com.google.common.collect.Lists;
 
 import javax.imageio.ImageIO;
@@ -16,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 import static javax.swing.SwingUtilities.*;
@@ -45,9 +49,10 @@ public final class Table extends Observable {
     private boolean highlightLegalMoves;
 
     private static final Table INSTANCE = new Table();
-    private GameSetup gameSetup;
+    private final GameSetup gameSetup;
+    private Move computerMove;
 
-    public Table() {
+    private Table() {
         this.gameFrame = new JFrame("Jess");
         gameFrame.setSize(OUTER_FRAME_DIMENSION);
         gameFrame.setJMenuBar(createTableMenuBar());
@@ -55,6 +60,7 @@ public final class Table extends Observable {
 
         this.chessBoard = Board.createStandardBoard();
         this.moveLog = new MoveLog();
+        this.addObserver(new TableGameAIWatcher());
         this.gameSetup = new GameSetup(this.gameFrame, true);
         this.pieceTheme = "simple";
 
@@ -132,12 +138,117 @@ public final class Table extends Observable {
         notifyObservers(gameSetup);
     }
 
+    private static class TableGameAIWatcher
+        implements Observer {
+
+        @Override
+        public void update(final Observable o, final Object arg){
+            if(Table.get().getGameSetup().isAIPlayer(Table.get().getGameBoard().currentPlayer()) &&
+                !Table.get().getGameBoard().currentPlayer().isInCheckMate() &&
+                !Table.get().getGameBoard().currentPlayer().isInStaleMate()) {
+                // Create an AI thread, execute AI work
+                final AIThinkTank thinkTank = new AIThinkTank();
+                thinkTank.execute();
+            }
+
+            if (Table.get().getGameBoard().currentPlayer().isInCheckMate()) {
+//                JOptionPane.showMessageDialog(Table.get().getBoardPanel(), );
+                System.out.println("Game Over, " + Table.get().getGameBoard().currentPlayer() + " is in Checkmate!");
+            }
+
+            if (Table.get().getGameBoard().currentPlayer().isInStaleMate()) {
+//                JOptionPane.showMessageDialog(Table.get().getBoardPanel(), );
+                System.out.println("Game Over, " + Table.get().getGameBoard().currentPlayer() + " is in Stalemate!");
+            }
+        }
+    }
+
+    private static class AIThinkTank extends SwingWorker<Move, String> {
+
+        private AIThinkTank() {
+
+        }
+
+        @Override
+        protected Move doInBackground() throws Exception {
+            // TODO use preferences
+            final MoveStrategy miniMax = new MiniMax(4);
+            final Move bestMove = miniMax.execute(Table.get().getGameBoard());
+            return bestMove;
+        }
+
+        @Override
+        public void done() {
+            try {
+                final Move bestMove = get();
+
+                Table.get().updateComputerMove(bestMove);
+                Table.get().updateGameBoard(Table.get().getGameBoard().currentPlayer().makeMove(bestMove).getTransitionBoard());
+                Table.get().getMoveLog().addMove(bestMove);
+                Table.get().getGameHistoryPanel().redo(Table.get().getGameBoard(), Table.get().getMoveLog());
+                Table.get().getTakenPiecesPanel().redo(Table.get().getMoveLog());
+                Table.get().getBoardPanel().drawBoard(Table.get().getGameBoard());
+                Table.get().moveMadeUpdate(PlayerType.COMPUTER);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+    }
+
+    private void moveMadeUpdate(final PlayerType playerType) {
+        setChanged();
+        notifyObservers(playerType);
+    }
+
+    public void updateComputerMove(final Move move) {
+        this.computerMove = move;
+    }
+
+    public void updateGameBoard(final Board board) {
+        this.chessBoard = board;
+    }
+
     private GameSetup getGameSetup() {
         return this.gameSetup;
     }
 
-    private static Table get() {
+    public static Table get() {
         return INSTANCE;
+    }
+
+    public void show(){
+        Table.get().getMoveLog().clear();
+        Table.get().getGameHistoryPanel().redo(chessBoard, Table.get().getMoveLog());
+        Table.get().getTakenPiecesPanel().redo(Table.get().getMoveLog());
+        Table.get().getBoardPanel().drawBoard(Table.get().getGameBoard());
+//        Table.get().getDebugPanel().redo();
+    }
+
+//    private DebugPanel getDebugPanel() {
+//        return this.debugPanel;
+//    }
+
+    private Board getGameBoard() {
+        return this.chessBoard;
+    }
+
+    private BoardPanel getBoardPanel() {
+        return this.boardPanel;
+    }
+
+    private TakenPiecesPanel getTakenPiecesPanel() {
+        return this.takenPiecesPanel;
+    }
+
+    private GameHistoryPanel getGameHistoryPanel() {
+        return this.gameHistoryPanel;
+    }
+
+    private MoveLog getMoveLog() {
+        return this.moveLog;
     }
 
     private class BoardPanel extends JPanel {
@@ -237,6 +348,11 @@ public final class Table extends Observable {
                         invokeLater(() -> {
                             gameHistoryPanel.redo(chessBoard, moveLog);
                             takenPiecesPanel.redo(moveLog);
+
+                            if(gameSetup.isAIPlayer(chessBoard.currentPlayer())) {
+                                Table.get().moveMadeUpdate(PlayerType.HUMAN);
+                            }
+
                             boardPanel.drawBoard(chessBoard);
                         });
                     }

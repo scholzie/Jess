@@ -1,5 +1,7 @@
 package com.chess.gui;
 
+import com.chess.engine.Alliance;
+import com.chess.engine.player.Player;
 import com.chess.gui.Table.PlayerType;
 
 import javax.swing.*;
@@ -82,5 +84,24 @@ public class GameSetup extends JDialog {
     void promptUser() {
         setVisible(true);
         repaint();
+    }
+
+    boolean isAIPlayer(final Player player) {
+        if(player.getAlliance() == Alliance.WHITE) {
+            return getWhitePlayerType() == PlayerType.COMPUTER;
+        }
+        return getBlackPlayerType() == PlayerType.COMPUTER;
+    }
+
+    PlayerType getWhitePlayerType() {
+        return this.whitePlayerType;
+    }
+
+    PlayerType getBlackPlayerType() {
+        return this.blackPlayerType;
+    }
+
+    int getSearchDepth() {
+        return (Integer)this.searchDepthSpinner.getValue();
     }
 }

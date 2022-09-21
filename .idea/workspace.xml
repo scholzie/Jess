@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/chess/gui/GameSetup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/util/FENUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/util/FENParserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/Jess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/Jess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/gui/GameSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/gui/GameSetup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/gui/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +77,7 @@
       <recent name="com.tests.chess.engine.board" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.FENParserTest.testWriteFEN2">
     <configuration name="Main Application, no tests" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.chess.Jess" />
       <module name="Jess" />
@@ -82,6 +85,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FENParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.util" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.util.FENParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FENParserTest.testWriteFEN2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.util" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.util.FENParserTest" />
+      <option name="METHOD_NAME" value="testWriteFEN2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main Application, no tests" />
+      <item itemvalue="JUnit.FENParserTest" />
+      <item itemvalue="JUnit.FENParserTest.testWriteFEN2" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FENParserTest.testWriteFEN2" />
+        <item itemvalue="JUnit.FENParserTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -130,6 +175,26 @@
           <url>file://$PROJECT_DIR$/src/com/chess/tests/engine/board/CastlingTest.java</url>
           <line>52</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/chess/gui/Table.java</url>
+          <line>201</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/chess/gui/Table.java</url>
+          <line>351</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/chess/tests/engine/util/FENParserTest.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/chess/engine/util/FENUtils.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
