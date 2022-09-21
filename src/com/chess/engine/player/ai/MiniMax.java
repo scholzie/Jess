@@ -15,6 +15,13 @@ import com.chess.engine.player.MoveTransition;
  *  - Checks/Mates
  *  - Castling
  *  - etc.
+ *
+ *  To try:
+ *      - favor early castling,
+ *      - favor control of center squares
+ *      - minimize number of pawn islands
+ *      - maximize number of passed pawns
+ *      - minimize number of backwards or doubled pawns
  */
 public class MiniMax implements MoveStrategy{
 
@@ -41,7 +48,7 @@ public class MiniMax implements MoveStrategy{
         int lowestSeenValue = Integer.MAX_VALUE;
         int currentValue;
 
-        System.out.println(board.currentPlayer() + " thinking with depth = " + this.searchDepth);
+        System.out.print(board.currentPlayer() + " thinking with depth = " + this.searchDepth);
 
         int numMoves = board.currentPlayer().getLegalMoves().size();
 
@@ -68,6 +75,7 @@ public class MiniMax implements MoveStrategy{
         }
 
         final long executionTime = System.currentTimeMillis() - startTime;
+        System.out.println(" " + this.numBoardsEvaluated + " positions evaluated.");
         return bestMove;
     }
 

@@ -4,8 +4,6 @@
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CheckMateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/board/CheckMateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/pieces/PiecesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/pieces/PiecesTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +73,7 @@
       <recent name="com.tests.chess.engine.board" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MiniMaxTest.testOpeningDepth5">
+  <component name="RunManager" selected="Application.Main Application, no tests">
     <configuration name="Main Application, no tests" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.chess.Jess" />
       <module name="Jess" />
