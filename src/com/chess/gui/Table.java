@@ -10,21 +10,18 @@ import com.google.common.collect.Lists;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
 
+import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 import static javax.swing.SwingUtilities.*;
 
-public class Table {
+// TODO research alternative for Observable
+public final class Table extends Observable {
     private Board chessBoard;
 
     private final JFrame gameFrame;
@@ -35,8 +32,8 @@ public class Table {
     private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400,350);
     private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10,10);
-    private final static Dimension TAKEN_PIECES_PANEL_DIMENSION = new Dimension(60,350);
-    private final static Dimension GAME_HISTORY_PANEL_DIMENSION = new Dimension(100,350);
+//    private final static Dimension TAKEN_PIECES_PANEL_DIMENSION = new Dimension(60,350);
+//    private final static Dimension GAME_HISTORY_PANEL_DIMENSION = new Dimension(100,350);
 
     private final String pieceTheme;
     private final Color darkTileColor = new Color(60, 95, 135); // Blue
@@ -47,19 +44,20 @@ public class Table {
     private BoardDirection boardDirection;
     private boolean highlightLegalMoves;
 
-    // TODO Need to make panels:
-    //      Taken Pieces
-    //      Moves
+    private static final Table INSTANCE = new Table();
+    private GameSetup gameSetup;
 
     public Table() {
+        this.gameFrame = new JFrame("Jess");
+        gameFrame.setSize(OUTER_FRAME_DIMENSION);
+        gameFrame.setJMenuBar(createTableMenuBar());
+        gameFrame.setLayout(new BorderLayout());
+
         this.chessBoard = Board.createStandardBoard();
         this.moveLog = new MoveLog();
+        this.gameSetup = new GameSetup(this.gameFrame, true);
         this.pieceTheme = "simple";
 
-        this.gameFrame = new JFrame("Jess");
-        this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
-        this.gameFrame.setJMenuBar(createTableMenuBar());
-        this.gameFrame.setLayout(new BorderLayout());
         this.boardPanel = new BoardPanel();
         this.boardDirection = BoardDirection.NORMAL;
         this.highlightLegalMoves = true;
@@ -69,48 +67,33 @@ public class Table {
         this.gameHistoryPanel = new GameHistoryPanel();
 //        this.gameHistoryPanel.setPreferredSize(GAME_HISTORY_PANEL_DIMENSION);
 
-        this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
-        this.gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
-        this.gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
+        gameFrame.add(this.boardPanel, BorderLayout.CENTER);
+        gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
+        gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
 
-        this.gameFrame.setVisible(true);
+        gameFrame.setVisible(true);
     }
 
     private JMenuBar createTableMenuBar() {
         final JMenuBar tableMenuBar = new JMenuBar();
         tableMenuBar.add(createFileMenu());
         tableMenuBar.add(createPreferencesMenu());
+        tableMenuBar.add(createOptionsMenu());
         return tableMenuBar;
     }
 
     private JMenu createFileMenu() {
         final JMenu fileMenu = new JMenu("File");
         final JMenuItem openPGN = new JMenuItem("Load PGN File");
-        openPGN.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Selected load PGN");
-            }
-        });
+        openPGN.addActionListener(e -> System.out.println("Selected load PGN"));
         fileMenu.add(openPGN);
 
         final JMenuItem openFEN = new JMenuItem("Load position from FEN");
-        openFEN.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Selected load FEN");
-            }
-        });
+        openFEN.addActionListener(e -> System.out.println("Selected load FEN"));
         fileMenu.add(openFEN);
 
         final JMenuItem exitMenuItem = new JMenuItem("Exit");
-        exitMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                System.exit(0);
-            }
-        });
+        exitMenuItem.addActionListener(e -> System.exit(0));
         fileMenu.add(exitMenuItem);
 
         return fileMenu;
@@ -119,24 +102,42 @@ public class Table {
     private JMenu createPreferencesMenu() {
         final JMenu preferencesMenu = new JMenu("Preferences");
         final JMenuItem flipBoardItem = new JMenuItem("Flip Board");
-        flipBoardItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boardDirection = boardDirection.opposite();
-                boardPanel.drawBoard(chessBoard);
-            }
+        flipBoardItem.addActionListener(e -> {
+            boardDirection = boardDirection.opposite();
+            boardPanel.drawBoard(chessBoard);
         });
         preferencesMenu.add(flipBoardItem);
 
         final JCheckBoxMenuItem legalMoveHighlightCheckbox = new JCheckBoxMenuItem("Highlight Legal Moves", true);
-        legalMoveHighlightCheckbox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                highlightLegalMoves = legalMoveHighlightCheckbox.isSelected();
-            }
-        });
+        legalMoveHighlightCheckbox.addActionListener(e -> highlightLegalMoves = legalMoveHighlightCheckbox.isSelected());
         preferencesMenu.add(legalMoveHighlightCheckbox);
         return preferencesMenu;
+    }
+
+    private JMenu createOptionsMenu() {
+        final JMenu optionsMenu = new JMenu("Options");
+        final JMenuItem playerSettingsMenuItem = new JMenuItem("Player Setup");
+        playerSettingsMenuItem.addActionListener(e -> {
+            Table.get().getGameSetup().promptUser();
+            Table.get().setupUpdate(Table.get().getGameSetup());
+            System.out.println("Selected Player Setup");
+        });
+        optionsMenu.add(playerSettingsMenuItem);
+
+        return optionsMenu;
+    }
+
+    private void setupUpdate(final GameSetup gameSetup) {
+        setChanged();
+        notifyObservers(gameSetup);
+    }
+
+    private GameSetup getGameSetup() {
+        return this.gameSetup;
+    }
+
+    private static Table get() {
+        return INSTANCE;
     }
 
     private class BoardPanel extends JPanel {
@@ -233,13 +234,10 @@ public class Table {
                             moveSourceTile = null;
                             humanMovedPiece = null;
                         }
-                        invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                gameHistoryPanel.redo(chessBoard, moveLog);
-                                takenPiecesPanel.redo(moveLog);
-                                boardPanel.drawBoard(chessBoard);
-                            }
+                        invokeLater(() -> {
+                            gameHistoryPanel.redo(chessBoard, moveLog);
+                            takenPiecesPanel.redo(moveLog);
+                            boardPanel.drawBoard(chessBoard);
                         });
                     }
                 }
@@ -332,6 +330,23 @@ public class Table {
             validate();
             repaint();
         }
+    }
+
+    public enum PlayerType {
+        HUMAN {
+            @Override
+            public String getPlayerTypeLabel() {
+                return "Human";
+            }
+        },
+        COMPUTER {
+            @Override
+            public String getPlayerTypeLabel() {
+                return "Computer";
+            }
+        };
+
+        public abstract String getPlayerTypeLabel();
     }
 
     public enum BoardDirection {
