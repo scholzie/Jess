@@ -77,7 +77,7 @@ public abstract class Piece {
      * To measure effectiveness of a piece based on its position
      * @return
      */
-    public abstract int locationBonus();
+    public abstract int getLocationBonus();
 
     public abstract Piece movePiece(Move move);
 

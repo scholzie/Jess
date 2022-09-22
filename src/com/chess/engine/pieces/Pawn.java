@@ -129,8 +129,8 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public int locationBonus() {
-        return this.pieceAlliance.pawnBonus(this.piecePosition);
+    public int getLocationBonus() {
+        return this.pieceAlliance.getBonus(PieceType.PAWN, this.piecePosition);
     }
 
     @Override

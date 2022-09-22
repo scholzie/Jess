@@ -66,8 +66,8 @@ public class Knight extends Piece {
     }
 
     @Override
-    public int locationBonus() {
-        return this.pieceAlliance.knightBonus(this.piecePosition);
+    public int getLocationBonus() {
+        return this.pieceAlliance.getBonus(PieceType.KNIGHT, this.piecePosition);
     }
 
     @Override

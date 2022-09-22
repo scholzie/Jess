@@ -68,8 +68,8 @@ public class Rook extends Piece {
     }
 
     @Override
-    public int locationBonus() {
-        return this.pieceAlliance.rookBonus(this.piecePosition);
+    public int getLocationBonus() {
+        return this.pieceAlliance.getBonus(PieceType.ROOK, this.piecePosition);
     }
 
     @Override

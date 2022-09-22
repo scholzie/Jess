@@ -96,8 +96,8 @@ public class King extends Piece {
     }
 
     @Override
-    public int locationBonus() {
-        return this.pieceAlliance.kingBonus(this.piecePosition);
+    public int getLocationBonus() {
+        return this.pieceAlliance.getBonus(PieceType.KING, this.piecePosition);
     }
 
     @Override

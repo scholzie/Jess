@@ -11,10 +11,10 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
     private static final int CHECK_MATE_BONUS = 10000;
     private static final int DEPTH_BONUS = 100;
     private static final int CASTLE_BONUS = 60;
-
-    protected static final StandardBoardEvaluator INSTANCE = new StandardBoardEvaluator();
     private static final int ATTACK_MULTIPLIER = 1;
     private static final int BISHOP_PAIR_BONUS = 25;
+    private static final int MOBILITY_MULTIPLIER = 5;
+    protected static final StandardBoardEvaluator INSTANCE = new StandardBoardEvaluator();
 
     public static StandardBoardEvaluator get() {
         return INSTANCE;
@@ -23,19 +23,19 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
     @Override
     public int evaluate(final Board board,
                         final int depth) {
-        return scorePlayer(board, board.whitePlayer(), depth) -
-                scorePlayer(board, board.blackPlayer(), depth);
+        return scorePlayer(board.whitePlayer(), depth) -
+                scorePlayer(board.blackPlayer(), depth);
     }
 
-    private int scorePlayer(final Board board,
-                            final Player player,
+    private int scorePlayer(final Player player,
                             final int depth) {
-        // TODO optional scaling factors?
-        return pieceValue(player) +
+
+        // TODO pawn structure
+        return pieceEvaluations(player) +
                 mobility(player) +
-                check(player) +
-                checkmate(player, depth) +
-                castle(player);
+                kingThreats(player, depth) +
+                castle(player) +
+                attacks(player);
     }
 
     private static int castle(final Player player) {
@@ -48,9 +48,9 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
      * @param depth
      * @return
      */
-    private static int checkmate(final Player player, final int depth) {
-        return player.getOpponent().isInCheckMate() ? CHECK_MATE_BONUS * depthBonus(depth) : 0;
-    }
+//    private static int checkmate(final Player player, final int depth) {
+//        return player.getOpponent().isInCheckMate() ? CHECK_MATE_BONUS * depthBonus(depth) : 0;
+//    }
 
     private static int depthBonus(final int depth) {
         return depth == 0 ? 1 : DEPTH_BONUS * depth;
@@ -61,10 +61,19 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
     }
 
     private static int mobility(final Player player) {
-        return player.getLegalMoves().size();
+        return MOBILITY_MULTIPLIER * mobilityRatio(player);
     }
 
-    private static int pieceValue(final Player player) {
+    /**
+     * A comparison of how many legal moves a player has w.r.t. their opponent
+     * @param player
+     * @return
+     */
+    private static int mobilityRatio(final Player player) {
+        return (int)((player.getLegalMoves().size() * 10.0f) / player.getOpponent().getLegalMoves().size());
+    }
+
+    private static int nominalPieceValue(final Player player) {
         return player.getActivePieces().stream()
                 .mapToInt(Piece::getPieceValue)
                 .sum();
@@ -86,6 +95,12 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
                         "Black pieceEval : " + pieceEvaluations(board.blackPlayer()) + "\n" +
 //                        "Black pawnStructure : " + pawnStructure(board.blackPlayer()) + "\n\n" +
                         "Final Score = " + evaluate(board, depth);
+    }
+
+    private static int kingThreats(final Player player, final int depth) {
+        return player.getOpponent().isInCheckMate()
+               ? CHECK_MATE_BONUS * depthBonus(depth)
+               : check(player);
     }
 
     /**
