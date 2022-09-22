@@ -4,7 +4,7 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.move.MoveFactory;
 import com.chess.engine.player.MoveTransition;
-import com.chess.engine.util.FENUtils;
+import com.chess.GameUtils.FENUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

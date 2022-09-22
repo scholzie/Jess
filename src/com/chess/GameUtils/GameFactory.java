@@ -1,0 +1,18 @@
+package com.chess.GameUtils;
+
+import com.chess.GameUtils.pgn.PGNGameTags;
+import com.chess.GameUtils.pgn.PGNUtilities;
+import com.chess.GameUtils.pgn.ParsePGNException;
+
+public class GameFactory {
+
+    public static Game createGame(final PGNGameTags tags,
+                                  final String gameText,
+                                  final String outcome) {
+        try {
+            return new ValidGame(tags, PGNUtilities.processMoveText(gameText), outcome);
+        } catch(final ParsePGNException e) {
+            return new InvalidGame(tags, gameText, outcome);
+        }
+    }
+}

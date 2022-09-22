@@ -1,4 +1,4 @@
-package com.chess.engine.util;
+package com.chess.GameUtils;
 
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;

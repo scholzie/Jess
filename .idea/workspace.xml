@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/GameFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/InvalidGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/ValidGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNGameTags.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNUtilities.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/ParsePGNException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/util/FENUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/FENUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/util/FENParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/util/FENParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +63,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.chess.GameUtils.pgn" />
+      <recent name="com.chess.GameUtils" />
       <recent name="com.chess.engine.player.ai" />
       <recent name="com.chess.engine.player" />
       <recent name="com.chess.engine.board" />
@@ -233,7 +243,7 @@
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/chess/engine/util/FENUtils.java</url>
+          <url>file://$PROJECT_DIR$/src/com/chess/GameUtils/FENUtils.java</url>
           <line>22</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
