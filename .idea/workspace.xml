@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1807c648-dcb8-4ff3-811f-b96814795f74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/GameFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/InvalidGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/ValidGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNGameTags.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNUtilities.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/ParsePGNException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNPersistence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/SQLiteGamePersistence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/util/PGNParserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/chess/tests/pgn/t1.pgn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/util/FENUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/FENUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/tests/engine/util/FENParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/tests/engine/util/FENParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Jess.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/move/MoveFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/move/MoveFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +21,8 @@
       <list>
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -54,9 +52,9 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java",
     "settings.editor.splitter.proportion": "0.17449194"
   }
@@ -83,58 +81,10 @@
       <recent name="com.tests.chess.engine.board" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main Application, no tests">
+  <component name="RunManager" selected="JUnit.PGNParserTest">
     <configuration name="Main Application, no tests" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.chess.Jess" />
       <module name="Jess" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MiniMaxTest.testOpeningDepth2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
-      <option name="METHOD_NAME" value="testOpeningDepth2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MiniMaxTest.testOpeningDepth3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
-      <option name="METHOD_NAME" value="testOpeningDepth3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MiniMaxTest.testOpeningDepth4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Jess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.player.ai.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.player.ai" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.player.ai.MiniMaxTest" />
-      <option name="METHOD_NAME" value="testOpeningDepth4" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -155,17 +105,64 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PiecesTest.testKingEquality" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PGNParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Jess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chess.tests.engine.pieces.*" />
+          <option name="PATTERN" value="com.chess.tests.engine.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.chess.tests.engine.pieces" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.pieces.PiecesTest" />
-      <option name="METHOD_NAME" value="testKingEquality" />
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.util" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.util.PGNParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PGNParserTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.util" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.util.PGNParserTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PGNParserTest.testParens" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.util" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.util.PGNParserTest" />
+      <option name="METHOD_NAME" value="testParens" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PGNParserTest.testWithErol" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Jess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.tests.engine.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chess.tests.engine.util" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.tests.engine.util.PGNParserTest" />
+      <option name="METHOD_NAME" value="testWithErol" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,19 +170,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main Application, no tests" />
-      <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth2" />
-      <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth3" />
-      <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth4" />
       <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth5" />
-      <item itemvalue="JUnit.PiecesTest.testKingEquality" />
+      <item itemvalue="JUnit.PGNParserTest" />
+      <item itemvalue="JUnit.PGNParserTest.test1" />
+      <item itemvalue="JUnit.PGNParserTest.testParens" />
+      <item itemvalue="JUnit.PGNParserTest.testWithErol" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PGNParserTest" />
+        <item itemvalue="JUnit.PGNParserTest.testWithErol" />
+        <item itemvalue="JUnit.PGNParserTest.testParens" />
+        <item itemvalue="JUnit.PGNParserTest.test1" />
         <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth5" />
-        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth4" />
-        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth3" />
-        <item itemvalue="JUnit.MiniMaxTest.testOpeningDepth2" />
-        <item itemvalue="JUnit.PiecesTest.testKingEquality" />
       </list>
     </recent_temporary>
   </component>
@@ -246,6 +243,27 @@
           <url>file://$PROJECT_DIR$/src/com/chess/GameUtils/FENUtils.java</url>
           <line>22</line>
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/chess/GameUtils/pgn/SQLiteGamePersistence.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNUtilities.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/chess/GameUtils/pgn/PGNUtilities.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/com/chess/GameUtils/pgn/SQLiteGamePersistence.java</url>
+          <line>13</line>
+          <properties field="INSTANCE" class="com.chess.GameUtils.pgn.SQLiteGamePersistence" />
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

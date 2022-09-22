@@ -22,4 +22,8 @@ public class MoveFactory {
 
         return NULL_MOVE;
     }
+
+    public static Move getNullMove() {
+        return NULL_MOVE;
+    }
 }
