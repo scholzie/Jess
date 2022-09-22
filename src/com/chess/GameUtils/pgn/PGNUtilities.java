@@ -6,15 +6,15 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.move.Move;
 import com.chess.engine.board.move.MoveFactory;
+import com.chess.gui.Table;
+import com.chess.gui.Table.MoveLog;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.platform.engine.support.discovery.SelectorResolver;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -265,5 +265,33 @@ public class PGNUtilities {
             }
         }
         return MoveFactory.getNullMove();
+    }
+
+    public static void writeGameToPGNFile(final File pgnFile,
+                                          final MoveLog moveLog) throws IOException {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(calculateEventString()).append("\n");
+        sb.append(calculateDateString()).append("\n");
+        sb.append(calculatePlyCountString(moveLog)).append("\n");
+        for(final Move move : moveLog.getMoves()) {
+            sb.append(move.toString() + " ");
+        }
+        try(final Writer w = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pgnFile, true)))) {
+            w.write(sb.toString());
+        }
+    }
+
+    private static String calculatePlyCountString(final MoveLog moveLog) {
+        return "[PlyCount \"" + moveLog.size() + "\"]";
+    }
+
+    private static String calculateDateString() {
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        return "[Date \"" + dateFormat.format(new Date()) + "\"]";
+    }
+
+    // TODO something nicer?
+    private static String calculateEventString() {
+        return "[Event \"Jess Game\"]";
     }
 }

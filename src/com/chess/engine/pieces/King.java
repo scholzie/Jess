@@ -96,6 +96,11 @@ public class King extends Piece {
     }
 
     @Override
+    public int locationBonus() {
+        return this.pieceAlliance.kingBonus(this.piecePosition);
+    }
+
+    @Override
     public int hashCode() {
         return (31 * super.hashCode()) + (this.isCastled ? 1 : 0);
     }

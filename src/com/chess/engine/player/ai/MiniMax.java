@@ -4,6 +4,8 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.move.Move;
 import com.chess.engine.player.MoveTransition;
 
+import java.util.Observable;
+
 /**
  * Use the Minimax algorithm to calculate the best move for each player.
  *
@@ -23,7 +25,7 @@ import com.chess.engine.player.MoveTransition;
  *      - maximize number of passed pawns
  *      - minimize number of backwards or doubled pawns
  */
-public class MiniMax implements MoveStrategy{
+public class MiniMax extends Observable implements MoveStrategy{
 
     private final BoardEvaluator boardEvaluator;
     private int searchDepth;
@@ -51,15 +53,17 @@ public class MiniMax implements MoveStrategy{
         System.out.print(board.currentPlayer() + " thinking with depth = " + this.searchDepth);
 
         int numMoves = board.currentPlayer().getLegalMoves().size();
-
+        int moveCounter = 0;
         for(final Move move : board.currentPlayer().getLegalMoves()) {
             final MoveTransition moveTransition = board.currentPlayer().makeMove(move);
+            final String s;
             if(moveTransition.getMoveStatus().isDone()) {
                 // After evaluating this move, the next player's min/max function needs to run
                 currentValue = board.currentPlayer().isWhite() ?
                                min(moveTransition.getTransitionBoard(), this.searchDepth - 1) :
                                max(moveTransition.getTransitionBoard(), this.searchDepth - 1);
-
+                s = "\t" + this + " analyzing move (" + moveCounter + "/" +numMoves+ ") " + move +
+                        " scores " + currentValue;
                 if(board.currentPlayer().isWhite() &&
                         currentValue >= highestSeenValue) {
                     // This move is now the best we've seen
@@ -71,11 +75,19 @@ public class MiniMax implements MoveStrategy{
                     bestMove = move;
                 }
 
+            } else {
+                s = "\t" + this + " can't execute move (" + moveCounter + "/" + numMoves + ") " + move;
             }
+            System.out.println(s);
+            setChanged();
+            notifyObservers(s);
+            moveCounter++;
         }
 
         final long executionTime = System.currentTimeMillis() - startTime;
-        System.out.println(" " + this.numBoardsEvaluated + " positions evaluated.");
+        System.out.printf("%s SELECTS %s [#boards = %d time taken = %d ms, rate = %.1f\n", board.currentPlayer(),
+                bestMove, this.numBoardsEvaluated, executionTime, (1000 * ((double)this.numBoardsEvaluated/executionTime)));
+//        System.out.println(" " + this.numBoardsEvaluated + " positions evaluated.");
         return bestMove;
     }
 

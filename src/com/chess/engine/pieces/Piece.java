@@ -73,6 +73,12 @@ public abstract class Piece {
                 pieceAlliance == piece.pieceAlliance && pieceType == piece.pieceType;
     }
 
+    /**
+     * To measure effectiveness of a piece based on its position
+     * @return
+     */
+    public abstract int locationBonus();
+
     public abstract Piece movePiece(Move move);
 
     public void setFirstMove(final boolean status) {
@@ -87,7 +93,10 @@ public abstract class Piece {
 
         PAWN(100, "P"),
         KNIGHT(300,"N"),
-        BISHOP(330, "B"),
+        BISHOP(330, "B") {
+            @Override
+            public boolean isBishop() { return true; }
+        },
         ROOK(500,"R") {
             @Override
             public boolean isRook() { return true; }
@@ -119,5 +128,8 @@ public abstract class Piece {
         // TODO set default false and override once
         public boolean isKing() { return false; }
         public boolean isRook() { return false; }
+        public boolean isBishop() {
+            return false;
+        }
     }
 }

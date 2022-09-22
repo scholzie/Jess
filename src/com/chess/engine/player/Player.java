@@ -129,4 +129,8 @@ public abstract class Player {
     public boolean isQueenSideCastleCapable() {
         return this.playerKing.isQueenSideCastleCapable();
     }
+
+    public MoveTransition unMakeMove(final Move lastMove) {
+        return new MoveTransition(this.board, lastMove.undo(), lastMove, MoveStatus.DONE);
+    }
 }
